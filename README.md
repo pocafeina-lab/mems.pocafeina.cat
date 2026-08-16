@@ -3,6 +3,9 @@
 The Meme Studio is designed to be insanely fast and provide powerful customization for your memes, while still being simple and easy to use.
 
 A list of memes is provided by default but you can also import your own image.
+The editor is privacy-first: no account is required, imported images are
+handled in the browser, and the application does not store your creations on a
+server.
 
 You have the option of downloading your personalized meme to your device or sharing it directly on your Twitter account. I do not save your meme in our database, so make sure you export your work.
 
@@ -21,6 +24,22 @@ runtime.
 - [Immer](https://immerjs.github.io/immer/docs/introduction) - Immutability library
 - [Next Intl](https://next-intl-docs.vercel.app) - Internationalization
 - [Tanstack Query](https://tanstack.com/query/latest) - Async state Managment
+
+The main application stack is Next.js App Router, React 19, Panda CSS,
+Zustand, Immer, TanStack Query, next-intl, Zod, Font Awesome and TypeScript.
+
+### Project structure
+
+```text
+src/app/          Next.js routes and static metadata
+src/components/   Shared UI components
+src/modules/      Home page and meme studio features
+src/i18n/         Catalan runtime messages and routing
+src/stores/       Editor and modal state
+src/queries/      TanStack Query providers
+src/shared/       APIs, helpers, hooks and constants
+styled-system/    Generated Panda CSS output
+```
 
 ### Contributing
 
