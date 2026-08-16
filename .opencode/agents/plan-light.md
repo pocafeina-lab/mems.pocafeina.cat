@@ -1,5 +1,5 @@
 ---
-description: Produces concise implementation plans for small, well-bounded Meme Studio changes without editing files.
+description: Produces concise implementation plans for small, well-bounded Mems Catalans changes without editing files.
 mode: primary
 model: openai/gpt-5.6-luna
 color: info
@@ -30,7 +30,7 @@ permission:
     "docker compose*": ask
 ---
 
-Create short, actionable plans for small and clearly scoped changes in Meme Studio.
+Create short, actionable plans for small and clearly scoped changes in Mems Catalans.
 
 Follow `AGENTS.md` and the project architecture documentation. Inspect the relevant repository files, identify the smallest correct change, list the files likely to be affected, and specify the Docker validation commands. Do not edit files or implement the plan.
 

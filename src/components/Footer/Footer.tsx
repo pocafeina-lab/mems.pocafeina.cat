@@ -39,14 +39,6 @@ const Footer = () => {
         <li>
           <LinkStyled href="/qa/">{t('qaa')}</LinkStyled>
         </li>
-        <li>
-          <LinkStyled
-            href="https://github.com/viclafouch/meme-studio"
-            target="_blank"
-          >
-            Github
-          </LinkStyled>
-        </li>
       </ul>
     </footer>
   )

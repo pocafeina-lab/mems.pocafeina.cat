@@ -31,8 +31,8 @@ const Page = async () => {
             {t('gallery.metadataTitle')}
           </styled.h1>
           <styled.p>
-            Plantilles personalitzables dels memes més populars i actuals. Més
-            d’un milió de plantilles actualitzades contínuament.
+            Explora les plantilles personalitzables disponibles al catàleg de
+            Mems Catalans.
           </styled.p>
         </Box>
         <MemesList

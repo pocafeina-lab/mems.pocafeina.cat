@@ -44,7 +44,7 @@ const EmptyContainer = ({ memesPromise }: EmptyContainerProps) => {
         h="full"
       >
         <Image
-          alt="Tria un meme"
+          alt="Tria un mem"
           width={360}
           height={308}
           priority

@@ -22,7 +22,7 @@ const HomePage = async ({ locale }: PageProps) => {
     <VStack h="100vh" bgColor="secondary" className={particulesBg()}>
       <Center flexDir="column" marginTop="14" flex={1} textAlign="center">
         <Image
-          alt="Logotip de Meme Studio"
+          alt="Logotip de Mems Catalans"
           width={350}
           height={67}
           priority

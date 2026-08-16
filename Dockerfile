@@ -5,12 +5,12 @@ WORKDIR /workspace
 ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY . .
-COPY docker-entrypoint.sh /usr/local/bin/meme-studio-entrypoint
+COPY mems-catalans-entrypoint.sh /usr/local/bin/mems-catalans-entrypoint
 
 RUN npm install --force --ignore-scripts \
-  && chmod +x /usr/local/bin/meme-studio-entrypoint
+  && chmod +x /usr/local/bin/mems-catalans-entrypoint
 
 EXPOSE 8080
 
-ENTRYPOINT ["meme-studio-entrypoint"]
+ENTRYPOINT ["mems-catalans-entrypoint"]
 CMD ["npm", "run", "dev"]

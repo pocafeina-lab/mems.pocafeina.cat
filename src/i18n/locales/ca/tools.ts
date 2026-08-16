@@ -6,7 +6,7 @@ export default {
   reset: 'Restableix',
   undo: 'Desfés',
   redo: 'Refés',
-  exportMeme: 'Exporta el meme',
+  exportMeme: 'Exporta el mem',
   goToCustomization: 'Textos personalitzats',
-  goToGallery: 'Descobreix memes'
+  goToGallery: 'Descobreix mems'
 } as const

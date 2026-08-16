@@ -1,6 +1,6 @@
-# Meme Studio
+# Mems Catalans
 
-The Meme Studio is designed to be insanely fast and provide powerful customization for your memes, while still being simple and easy to use.
+Mems Catalans is designed to be fast and provide powerful customization for your memes, while still being simple and easy to use.
 
 A list of memes is provided by default but you can also import your own image.
 The editor is privacy-first: no account is required, imported images are
@@ -63,9 +63,9 @@ Run checks with `docker compose run --rm app npm run lint`.
 ### Static export
 
 1. Build the image: `docker compose build app`
-2. Export the application: `docker compose run --name meme-studio-static-export app npm run build`
-3. Copy the generated artifact: `docker cp meme-studio-static-export:/workspace/out/. ./out/`
-4. Remove the build container: `docker rm meme-studio-static-export`
+2. Export the application: `docker compose run --name mems-catalans-static-export app npm run build`
+3. Copy the generated artifact: `docker cp mems-catalans-static-export:/workspace/out/. ./out/`
+4. Remove the build container: `docker rm mems-catalans-static-export`
 5. Preview it with Nginx: `docker compose --profile static up -d static`
 6. Open `http://localhost:8081/`
 

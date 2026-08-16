@@ -1,3 +1,5 @@
+name: mems-catalans
+
 services:
   app:
     build:

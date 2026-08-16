@@ -38,14 +38,15 @@
 - Validate the export build with `docker compose run --rm app npm run build`.
 - Start development with `docker compose up -d app`.
 - Start the static preview with `docker compose --profile static up -d static`.
-- Generate a persistent export with `docker compose run --name meme-studio-static-export app npm run build`.
-- Copy that export with `docker cp meme-studio-static-export:/workspace/out/. ./out/`.
-- Remove only that disposable export container with `docker rm meme-studio-static-export`.
+- Generate a persistent export with `docker compose run --name mems-catalans-static-export app npm run build`.
+- Copy that export with `docker cp mems-catalans-static-export:/workspace/out/. ./out/`.
+- Remove only that disposable export container with `docker rm mems-catalans-static-export`.
 - Any other Docker command requires approval.
 
 ## Language
 
 - Keep source code, identifiers, technical comments, and technical documentation in English.
+- Keep `CHANGELOG.md` in Catalan because it is product-facing release documentation.
 - The product interface and user-facing content currently run in Catalan (`ca`).
 - English locale files may remain as upstream reference material only; French is not part of the runtime.
 - Meme names, tags, keywords, and catalogue choices are product-content work and remain unchanged during the initial locale migration.
@@ -58,6 +59,16 @@
 4. Run project commands through Docker only.
 5. For static export, inspect the generated artifact and serve it with a plain static server.
 6. Report changed files, validation commands, failures, and deferred decisions.
+
+## Versioning and releases
+
+- Use Semantic Versioning for product releases. The current stabilized baseline starts at `0.1.0`.
+- A change to `package.json` does not automatically require a release tag. Dependency, script, or configuration changes remain untagged until a release is intentionally prepared.
+- Release preparation updates `package.json`, the root version fields in `package-lock.json`, and `CHANGELOG.md` together in one commit.
+- Keep future work under the `[No publicat]` section of `CHANGELOG.md`. Record product-relevant changes, not every internal commit.
+- Run the canonical Docker lint and build checks before creating a release tag.
+- Create immutable annotated tags with the `v` prefix, such as `v0.1.0`, on the validated release commit. Never move or delete a published tag.
+- Use patch releases for corrections, minor releases for compatible product features, and canary suffixes only for deliberately published previews.
 
 ## Approval boundaries
 

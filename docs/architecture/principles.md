@@ -2,7 +2,7 @@
 
 ## Preserve before replacing
 
-Meme Studio is an existing Next.js/React application. Changes must preserve its behavior, visual output, editor interactions, and current dependency boundaries unless a redesign is explicitly approved.
+Mems Catalans is an independent downstream Next.js/React application. Changes must preserve its behavior, visual output, editor interactions, and current dependency boundaries unless a redesign is explicitly approved.
 
 Next.js remains the implementation baseline while its official static-export path is evaluated. Do not migrate to another framework in response to an unverified export error.
 

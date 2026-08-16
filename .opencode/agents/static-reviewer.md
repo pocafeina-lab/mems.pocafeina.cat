@@ -1,5 +1,5 @@
 ---
-description: Reviews whether the application remains compatible with a faithful Next.js static export and static hosting.
+description: Reviews whether Mems Catalans remains compatible with a faithful Next.js static export and static hosting.
 mode: subagent
 color: info
 permission:

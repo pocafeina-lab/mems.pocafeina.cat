@@ -94,7 +94,7 @@ const ExportModal = ({ canvasBlob, height, width }: ExportModalProps) => {
         <LinkButton
           startAdornment={<FontAwesomeIcon icon={faArrowCircleDown} />}
           href={imageSrc}
-          download="meme.png"
+          download="mem.png"
           rounded
           color="primaryDark"
         >

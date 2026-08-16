@@ -1,6 +1,6 @@
 export default {
   preview: 'Previsualització',
-  createMeme: 'Crea un meme',
+  createMeme: 'Crea un mem',
   fullSize: 'Mida completa:',
   download: 'Descarrega',
   copy: 'Copia al porta-retalls',
@@ -20,15 +20,15 @@ export default {
   left: 'Esquerra',
   right: 'Dreta',
   bottom: 'Inferior',
-  selectAFile: 'Selecciona un meme a la galeria',
+  selectAFile: 'Selecciona un mem a la galeria',
   or: 'o',
   dropImage: 'tria una imatge',
-  noSelectedMeme: 'Cap meme seleccionat',
-  browseMemes: 'Explora els memes',
+  noSelectedMeme: 'Cap mem seleccionat',
+  browseMemes: 'Explora els mems',
   chooseImage: 'Tria una imatge del dispositiu',
   getStarted: 'Comença',
   intro:
-    'Crea un meme a partir d’imatges JPG o PNG. Edita la imatge i crea el teu meme personalitzat.',
+    'Crea un mem a partir d’imatges JPG o PNG. Edita la imatge i crea el teu mem personalitzat.',
   copied: 'Copiat al porta-retalls',
   errors: {
     unknown: 'S’ha produït un error desconegut.'

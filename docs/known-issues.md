@@ -48,7 +48,7 @@ Last observed: 2026-08-16
 ### STATIC-002: deployment-specific error documents
 
 - Observation: a plain static host must be configured to serve the exported `404.html` for missing routes.
-- Impact: without that configuration, the host may show its generic 404 page instead of Meme Studio's Catalan page.
+- Impact: without that configuration, the host may show its generic 404 page instead of Mems Catalans' Catalan page.
 - Decision: the local Nginx preview uses `error_page 404 /404.html`; deployment configuration remains target-specific.
 - Resolution: verify the custom error document when GitHub Pages is configured for `mems.pocafeina.cat`.
 

@@ -1,6 +1,6 @@
 {
-  "name": "meme-studio",
-  "version": "1.0.0",
+  "name": "mems-catalans",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8080",
