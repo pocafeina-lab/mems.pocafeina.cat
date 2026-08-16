@@ -6,12 +6,13 @@ A list of memes is provided by default but you can also import your own image.
 
 You have the option of downloading your personalized meme to your device or sharing it directly on your Twitter account. I do not save your meme in our database, so make sure you export your work.
 
-Website : [meme-studio.io](https://www.meme-studio.io)
+Website : [mems.pocafeina.cat](https://mems.pocafeina.cat)
 
-#### Langs available (for now) :
+#### Runtime language
 
-- Français
-- English
+The application currently runs in Catalan (`ca`). The upstream English locale
+files remain as reference material only; the French locale is not part of the
+runtime.
 
 #### What I use:
 
@@ -25,12 +26,34 @@ Website : [meme-studio.io](https://www.meme-studio.io)
 
 Any contributions and/or pull requests would be welcome.
 
-### Installing from source
+### Development with Docker
 
-1. Clone the repository: `git clone https://github.com/viclafouch/meme-studio.git`
-2. Install the npm dependencies `npm install`
-3. Start server: `npm run dev`
+Node.js, npm, and project dependencies are intentionally kept inside Docker.
+Use the command forms below exactly; alternate argument order or extra flags
+are not included in the project's routine Docker allowlist.
 
-### Release
+1. Build the image: `docker compose build app`
+2. Start the development server: `docker compose up -d app`
+3. Open `http://localhost:8080/`
 
-1. With vercel: `npx vercel --prod`
+Rebuild the image after source changes because the Compose setup does not
+bind-mount the repository into the container.
+
+Run checks with `docker compose run --rm app npm run lint`.
+
+### Static export
+
+1. Build the image: `docker compose build app`
+2. Export the application: `docker compose run --name meme-studio-static-export app npm run build`
+3. Copy the generated artifact: `docker cp meme-studio-static-export:/workspace/out/. ./out/`
+4. Remove the build container: `docker rm meme-studio-static-export`
+5. Preview it with Nginx: `docker compose --profile static up -d static`
+6. Open `http://localhost:8081/`
+
+The primary deployment target is GitHub Pages with the custom domain
+`mems.pocafeina.cat`. An Apache-served static artifact on a VPS is the
+fallback. A Dockerized Next.js runtime is reserved for features that require a
+server.
+
+Known build and deployment caveats are tracked in
+[`docs/known-issues.md`](docs/known-issues.md).
