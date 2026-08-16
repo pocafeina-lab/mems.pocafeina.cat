@@ -57,7 +57,7 @@ Last observed: 2026-08-16
 - Observation: the export, direct routes, and assets have been checked with Docker and HTTP requests.
 - Impact: browser interactions such as image import, text editing, and meme export still need manual verification on the static artifact.
 - Decision: complete browser-level validation before treating GitHub Pages as approved for publication.
-- Resolution: test the editor through the Nginx preview, including mobile-sized viewport behavior.
+- Resolution: test the editor through the Nginx preview at representative desktop viewport sizes.
 
 ### STATIC-004: local export directory must be clean
 
