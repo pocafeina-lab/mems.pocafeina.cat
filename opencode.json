@@ -1,0 +1,81 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "build",
+  "agent": {
+    "plan": {
+      "model": "openai/gpt-5.6-sol"
+    },
+    "build": {
+      "model": "openai/gpt-5.6-luna"
+    }
+  },
+  "share": "manual",
+  "snapshot": true,
+  "instructions": [
+    "AGENTS.md",
+    "docs/architecture/principles.md",
+    "docs/decisions/0001-deployment-strategy.md"
+  ],
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "task": "allow",
+    "todowrite": "allow",
+    "question": "allow",
+    "lsp": "deny",
+    "webfetch": "deny",
+    "websearch": "deny",
+    "skill": "deny",
+    "external_directory": "deny",
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git add*": "ask",
+      "git commit*": "ask",
+      "git push*": "ask",
+      "git fetch*": "ask",
+      "git pull*": "ask",
+      "git clone*": "ask",
+      "git remote*": "ask",
+      "git reset*": "ask",
+      "git restore*": "ask",
+      "git checkout*": "ask",
+      "git clean*": "ask",
+      "git rm*": "ask",
+      "node*": "deny",
+      "npm*": "deny",
+      "npx*": "deny",
+      "pnpm*": "deny",
+      "yarn*": "deny",
+      "python*": "deny",
+      "python3*": "deny",
+      "deno*": "deny",
+      "bun*": "deny",
+      "rm*": "ask",
+      "curl*": "deny",
+      "wget*": "deny",
+      "ssh*": "deny",
+      "scp*": "deny",
+      "sudo*": "deny",
+      "docker*": "ask",
+      "docker compose*": "ask",
+      "docker compose config --quiet": "allow",
+      "docker compose ps": "allow",
+      "docker compose logs app": "allow",
+      "docker compose build app": "allow",
+      "docker compose run --rm app npm run lint": "allow",
+      "docker compose run --rm app npm run build": "allow",
+      "docker compose up -d app": "allow",
+      "docker compose --profile static up -d static": "allow",
+      "docker compose run --name meme-studio-static-export app npm run build": "allow",
+      "docker cp meme-studio-static-export:/workspace/out/. ./out/": "allow",
+      "docker rm meme-studio-static-export": "allow"
+    }
+  }
+}
