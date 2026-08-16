@@ -10,10 +10,10 @@ import {
 import QueryProvider from 'queries/QueryProvider'
 import ToastContainer from '@components/NotificationProvider'
 import { defaultLocale } from '@i18n/config'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { baseURL, IS_PROD } from '@shared/constants/env'
 import { ModalProvider } from '@stores/Modal/Modal.provider'
 import { css, cx } from '@styled-system/css'
-import { GoogleAnalytics } from '@next/third-parties/google'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../../styles/globals.css'
 

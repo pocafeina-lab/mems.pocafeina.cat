@@ -15,12 +15,14 @@ export async function generateMetadata() {
   }
 }
 
-const Page = () => (
-  <Container maxW="8/12">
-    <Box mt={6}>
-      <QaACaMDX />
-    </Box>
-  </Container>
-)
+const Page = () => {
+  return (
+    <Container maxW="8/12">
+      <Box mt={6}>
+        <QaACaMDX />
+      </Box>
+    </Container>
+  )
+}
 
 export default Page

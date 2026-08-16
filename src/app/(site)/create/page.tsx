@@ -15,6 +15,8 @@ export async function generateMetadata() {
   }
 }
 
-const Page = () => <CreatePage />
+const Page = () => {
+  return <CreatePage />
+}
 
 export default Page

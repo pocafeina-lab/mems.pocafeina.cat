@@ -16,6 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const Page = () => <HomePage locale={defaultLocale} />
+const Page = () => {
+  return <HomePage locale={defaultLocale} />
+}
 
 export default Page

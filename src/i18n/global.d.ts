@@ -1,5 +1,5 @@
-// Use type safe message keys with `next-intl`
-type Messages = (typeof import('./locales/ca'))['default']
+import type Messages from './locales/ca'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-declare interface IntlMessages extends Messages {}
+declare global {
+  type IntlMessages = Messages
+}
