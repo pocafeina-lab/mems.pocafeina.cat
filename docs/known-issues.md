@@ -4,13 +4,13 @@ This document records non-blocking warnings and deferred technical work. It is
 updated when a check changes, a deployment decision is made, or an issue is
 resolved.
 
-Last observed: 2026-08-15
+Last observed: 2026-08-16
 
 ## Build and Tooling
 
 ### DEP-001: inherited dependency vulnerabilities
 
-- Observation: the Docker image install reports 32 vulnerabilities (3 low, 17 moderate, 12 high).
+- Observation: the Docker image install reports 27 vulnerabilities (3 low, 13 moderate, 11 high).
 - Impact: lint and production builds pass; the application has not received an automatic dependency upgrade.
 - Decision: defer `npm audit fix` and especially `npm audit fix --force` until dependency changes are reviewed explicitly.
 - Resolution: review the dependency tree, identify direct versus transitive vulnerabilities, and update packages deliberately.
