@@ -7,7 +7,7 @@ export async function generateMetadata() {
   const t = await getTranslations({ locale: defaultLocale })
 
   return {
-    title: t('qAq.metadataTitle'),
+    title: 'Preguntes freqüents',
     description: t('qAq.metadataDescription'),
     alternates: {
       canonical: '/qa/'

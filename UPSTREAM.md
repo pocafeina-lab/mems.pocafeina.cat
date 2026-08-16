@@ -23,12 +23,13 @@ part of this project's main history.
 - `5b4fc95`: dependency, framework, Panda CSS, generated output, and runtime fixes. It was adapted as the curated technical base.
 - `8a3570e`: selected React, editor-performance, security, privacy, and dependency-review guidance was adapted into `.opencode/agents/react-editor-reviewer.md`.
 - `5f7e751`: selected README structure, privacy wording, stack, and project structure were adapted into `README.md`.
+- `d8fa0be`: the independent image-sizing correction for the home logo and empty editor illustration was adapted without importing the promotional feature.
 
 ### Skipped
 
 - `8a3570e`: Claude configuration, unrelated skills, and agent tooling were not imported.
 - `5f7e751`: its upstream-specific README was not imported verbatim because it documents host npm, Vercel, English/French runtime behavior, and an unspecified license.
-- `d8fa0be`: the Petit Meme promotional banner was not imported.
+- `d8fa0be`: the Petit Meme promotional banner and its unrelated locale changes were not imported wholesale.
 
 ## Update Policy
 

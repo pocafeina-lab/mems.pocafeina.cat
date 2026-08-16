@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations({ locale: defaultLocale })
 
   return {
-    title: t('home.metadataTitle'),
+    title: { absolute: 'Mems Catalans' },
     description: t('home.metadataDescription'),
     alternates: {
       canonical: '/'

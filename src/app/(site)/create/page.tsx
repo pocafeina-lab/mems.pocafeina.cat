@@ -7,7 +7,7 @@ export async function generateMetadata() {
   const t = await getTranslations({ locale: defaultLocale })
 
   return {
-    title: t('create.metadataTitle'),
+    title: 'Crea un mem',
     description: t('create.metadataDescription'),
     alternates: {
       canonical: '/create/'

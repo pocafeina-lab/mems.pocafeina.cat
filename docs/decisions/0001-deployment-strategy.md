@@ -16,7 +16,7 @@ The goal is not to rewrite the editor or remove the existing framework. Next.js 
 2. Run installation, development, linting, type checking, and builds in Docker or CI.
 3. Stabilize the upstream baseline before implementing the Catalan-only runtime.
 4. Test `output: 'export'` only after the locale change is isolated and the existing application still compiles.
-5. Keep CDN references, Analytics, fonts, and original browser integrations unless a real build or deployment failure requires a focused change.
+5. Keep the generated artifact self-contained: catalogue images are served from `public/templates`, inherited Analytics is disabled, and new browser integrations require an explicit product decision.
 6. Stop the static migration if it requires a broad refactor or changes editor behavior. Compare a Dockerized Next.js deployment on a VPS instead.
 7. Treat GitHub Pages with `mems.pocafeina.cat` as the primary deployment target. The site is served from the domain root, so project-subpath configuration is not required. An Apache-served static artifact is the first fallback, while a Dockerized Next.js runtime remains available if static validation exposes a real server requirement.
 
@@ -26,4 +26,4 @@ The goal is not to rewrite the editor or remove the existing framework. Next.js 
 - Static export may be rejected based on evidence rather than preference.
 - Docker adds a local command layer but avoids host pollution.
 - A VPS remains available as a lower-change fallback.
-- Public deployment requires a later review of inherited analytics identifiers and external resources.
+- Public deployment can proceed only after the self-contained artifact and editor behavior have been validated.

@@ -10,7 +10,9 @@ Next.js remains the implementation baseline while its official static-export pat
 
 Node.js and npm are build-time tools only. They run in Docker or CI, never as host-installed project requirements. A static deployment may contain compiled JavaScript and third-party browser dependencies; it does not need to be dependency-free source code.
 
-Existing CDN references and browser services are acceptable when they belong to the original application. Review them before public deployment instead of removing them during stabilization.
+Runtime catalogue images and browser services are self-contained or deliberately
+owned by this project. Do not introduce upstream CDN or analytics dependencies
+when adapting future changes.
 
 ## Static deployment gate
 

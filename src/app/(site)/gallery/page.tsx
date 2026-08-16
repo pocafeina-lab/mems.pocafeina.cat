@@ -11,7 +11,7 @@ export async function generateMetadata() {
   const t = await getTranslations({ locale: defaultLocale })
 
   return {
-    title: t('gallery.metadataTitle'),
+    title: 'Galeria',
     description: t('gallery.metadataDescription'),
     alternates: {
       canonical: '/gallery/'
