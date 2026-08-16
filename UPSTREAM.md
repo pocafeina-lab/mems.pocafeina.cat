@@ -21,8 +21,8 @@ part of this project's main history.
 ### Adapted
 
 - `5b4fc95`: dependency, framework, Panda CSS, generated output, and runtime fixes. It was adapted as the curated technical base.
-- `8a3570e`: selected React, editor-performance, security, privacy, and dependency-review guidance will be adapted to OpenCode where useful.
-- `5f7e751`: selected README structure and product documentation will be adapted to the Catalan static project.
+- `8a3570e`: selected React, editor-performance, security, privacy, and dependency-review guidance was adapted into `.opencode/agents/react-editor-reviewer.md`.
+- `5f7e751`: selected README structure, privacy wording, stack, and project structure were adapted into `README.md`.
 
 ### Skipped
 
