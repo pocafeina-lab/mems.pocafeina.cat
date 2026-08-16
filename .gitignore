@@ -22,7 +22,9 @@ yarn-error.log*
 
 .vscode
 .next
+out
 tsconfig.tsbuildinfo
 .vercel
+.idea
 
 certificates

@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+    working_dir: /workspace
+    environment:
+      NEXT_TELEMETRY_DISABLED: '1'
+    ports:
+      - '127.0.0.1:8080:8080'
+    command: npm run dev
+
+  static:
+    image: nginx:1.27-alpine
+    profiles:
+      - static
+    volumes:
+      - ./out:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - '127.0.0.1:8081:80'
