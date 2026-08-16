@@ -20,23 +20,6 @@ const Page = () => {
     <Container maxW="8/12">
       <Box mt={6}>
         <AboutCaMDX />
-        <Box mt={10}>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=viclafouch&repo=meme-studio&type=star&count=true"
-            width="90px"
-            title="Repositori de GitHub"
-            height="20px"
-            sandbox="allow-scripts"
-          />
-          <br />
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=viclafouch&type=follow&count=true"
-            width="170px"
-            height="20px"
-            title="Seguidors a GitHub"
-            sandbox="allow-scripts"
-          />
-        </Box>
       </Box>
     </Container>
   )
