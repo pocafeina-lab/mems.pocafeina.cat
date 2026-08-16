@@ -150,7 +150,7 @@ const Tools = () => {
             ) : (
               <Link
                 className={buttonRecipe()}
-                href="/create"
+                href="/create/"
                 onClick={resetAll}
               >
                 <FontAwesomeIcon icon={faTrashRestore} />

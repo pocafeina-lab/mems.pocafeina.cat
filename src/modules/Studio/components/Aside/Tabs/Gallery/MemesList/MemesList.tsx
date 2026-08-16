@@ -23,7 +23,7 @@ const MemesList = ({
           <li key={meme.id}>
             <Styled.MemeLink
               disableHoverShowTitle={disableHoverShowTitle}
-              href={`/create/${getMemeSlug(meme)}`}
+              href={`/create/${getMemeSlug(meme)}/`}
             >
               <Image
                 alt={meme.name}

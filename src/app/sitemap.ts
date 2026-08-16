@@ -1,36 +1,38 @@
 import type { MetadataRoute } from 'next'
+import { defaultLocale } from '@i18n/config'
 import { getMemes } from '@shared/api/memes'
 import { baseURL } from '@shared/constants/env'
 import { getMemeSlug } from '@viclafouch/meme-studio-utilities/utils'
 
+export const dynamic = 'force-static'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const memes = await getMemes({ locale: 'en' })
+  const memes = await getMemes({ locale: defaultLocale })
+  const staticPaths = ['/', '/create/', '/gallery/', '/about/', '/qa/']
+  const lastModified = new Date()
 
-  return memes
-    .flatMap((meme) => {
-      return [
-        {
-          slug: getMemeSlug(meme),
-          locale: 'en'
-        },
-        ...meme.translations.map((translation) => {
-          return {
-            slug: getMemeSlug({ name: translation.name, id: meme.id }),
-            locale: translation.locale
-          }
-        })
-      ]
-    })
-    .map((params) => {
-      const url = new URL(baseURL)
+  const staticRoutes: MetadataRoute.Sitemap = staticPaths.map((pathname) => {
+    const url = new URL(baseURL)
+    url.pathname = pathname
 
-      url.pathname = `/${params.locale}/create/${params.slug}`
+    return {
+      url: url.toString(),
+      lastModified
+    }
+  })
 
-      return {
-        url: url.toString(),
-        lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 0.7
-      }
-    })
+  const memeRoutes: MetadataRoute.Sitemap = memes.map((meme) => {
+    const url = new URL(baseURL)
+
+    url.pathname = `/create/${getMemeSlug(meme)}/`
+
+    return {
+      url: url.toString(),
+      lastModified,
+      changeFrequency: 'daily',
+      priority: 0.7
+    }
+  })
+
+  return [...staticRoutes, ...memeRoutes]
 }

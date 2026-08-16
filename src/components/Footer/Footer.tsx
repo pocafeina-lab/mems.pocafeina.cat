@@ -28,16 +28,16 @@ const Footer = () => {
     >
       <ul className={center()}>
         <li>
-          <LinkStyled href="/about">{t('about')}</LinkStyled>
+          <LinkStyled href="/about/">{t('about')}</LinkStyled>
         </li>
         {/* <li>
           <LinkStyled href="/terms">{t('terms')}</LinkStyled>
         </li> */}
         <li>
-          <LinkStyled href="/gallery">{t('gallery')}</LinkStyled>
+          <LinkStyled href="/gallery/">{t('gallery')}</LinkStyled>
         </li>
         <li>
-          <LinkStyled href="/qa">{t('qaa')}</LinkStyled>
+          <LinkStyled href="/qa/">{t('qaa')}</LinkStyled>
         </li>
         <li>
           <LinkStyled

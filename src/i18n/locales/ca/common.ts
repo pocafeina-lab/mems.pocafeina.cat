@@ -1,0 +1,36 @@
+export default {
+  preview: 'Previsualització',
+  createMeme: 'Crea un meme',
+  fullSize: 'Mida completa:',
+  download: 'Descarrega',
+  copy: 'Copia al porta-retalls',
+  customization: 'Personalització',
+  duplicate: 'Duplica',
+  delete: 'Elimina',
+  fontSize: 'Mida de la lletra',
+  boxShadow: 'Ombra',
+  color: 'Color',
+  fontFamily: 'Família tipogràfica',
+  verticalAlign: 'Alineació vertical',
+  horizontalAlignment: 'Alineació horitzontal',
+  textInUppercase: 'Text en majúscules',
+  text: 'Text',
+  center: 'Centrat',
+  top: 'Superior',
+  left: 'Esquerra',
+  right: 'Dreta',
+  bottom: 'Inferior',
+  selectAFile: 'Selecciona un meme a la galeria',
+  or: 'o',
+  dropImage: 'tria una imatge',
+  noSelectedMeme: 'Cap meme seleccionat',
+  browseMemes: 'Explora els memes',
+  chooseImage: 'Tria una imatge del dispositiu',
+  getStarted: 'Comença',
+  intro:
+    'Crea un meme a partir d’imatges JPG o PNG. Edita la imatge i crea el teu meme personalitzat.',
+  copied: 'Copiat al porta-retalls',
+  errors: {
+    unknown: 'S’ha produït un error desconegut.'
+  }
+} as const

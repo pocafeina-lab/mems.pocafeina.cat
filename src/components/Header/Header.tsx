@@ -29,8 +29,8 @@ const Header = ({ actions = null }: HeaderProps) => {
             target="_blank"
             href="https://github.com/viclafouch/meme-studio"
             className="github-corner"
-            aria-label="View source on GitHub"
-            title="View source on GitHub"
+            aria-label="Consulta el codi a GitHub"
+            title="Consulta el codi a GitHub"
             rel="noreferrer noopener"
           >
             <GithubIcon />
@@ -40,7 +40,7 @@ const Header = ({ actions = null }: HeaderProps) => {
       <Box py="1.5">
         <Link href="/">
           <Image
-            alt="Meme Studio logo"
+            alt="Logotip de Meme Studio"
             width={250}
             height={48}
             style={{ width: 'auto', height: 'auto', maxHeight: '100%' }}

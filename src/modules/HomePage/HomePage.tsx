@@ -2,16 +2,15 @@ import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import Footer from '@components/Footer'
 import LinkButton from '@components/LinkButton'
-import LocaleSelector from '@components/LocaleSelector'
 import MemesList from '@components/MemesList'
+import type { Locale } from '@i18n/locales-constants'
 import { getMemes } from '@shared/api/memes'
 import { css } from '@styled-system/css'
 import { Box, Center, Container, VStack } from '@styled-system/jsx'
 import { particulesBg } from '@styled-system/patterns'
-import type { Locales } from '@viclafouch/meme-studio-utilities/constants'
 
 type PageProps = {
-  locale: Locales
+  locale: Locale
 }
 
 const HomePage = async ({ locale }: PageProps) => {
@@ -21,12 +20,9 @@ const HomePage = async ({ locale }: PageProps) => {
 
   return (
     <VStack h="100vh" bgColor="secondary" className={particulesBg()}>
-      <Box position="absolute" right={30} top={30}>
-        <LocaleSelector />
-      </Box>
       <Center flexDir="column" marginTop="14" flex={1} textAlign="center">
         <Image
-          alt="Meme Studio logo"
+          alt="Logotip de Meme Studio"
           width={350}
           height={67}
           style={{ width: 'auto', height: 'auto' }}
@@ -37,7 +33,7 @@ const HomePage = async ({ locale }: PageProps) => {
           <p className={css({ mt: '3', fontSize: 'xl', mb: '5' })}>
             {t('common.intro')}
           </p>
-          <LinkButton color="primaryDark" size="large" rounded href="/create">
+          <LinkButton color="primaryDark" size="large" rounded href="/create/">
             {t('common.getStarted')}
           </LinkButton>
           <Box mt="7">

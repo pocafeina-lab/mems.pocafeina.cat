@@ -1,2 +1,3 @@
 User-Agent: *
 Allow: *
+Sitemap: https://mems.pocafeina.cat/sitemap.xml

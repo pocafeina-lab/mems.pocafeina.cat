@@ -1,4 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports -- import() is required in ambient declaration files
-type Messages = (typeof import('./locales/en'))['default']
+// Use type safe message keys with `next-intl`
+type Messages = (typeof import('./locales/ca'))['default']
 
-declare type IntlMessages = {} & Messages
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+declare interface IntlMessages extends Messages {}

@@ -1,16 +1,15 @@
 import type React from 'react'
 import { createNavigation } from 'next-intl/navigation'
-import { defineRouting } from 'next-intl/routing'
-import { localePrefix, localesArray } from './config'
+import { defaultLocale } from './config'
 
-export const routing = defineRouting({
-  locales: ['en', 'fr'],
-  defaultLocale: 'en'
+const locales = [defaultLocale] as const
+
+const navigation = createNavigation({
+  locales,
+  defaultLocale,
+  localePrefix: 'never'
 })
 
-export const { Link, redirect, usePathname, useRouter } = createNavigation({
-  locales: localesArray,
-  localePrefix
-})
+export const { Link, redirect, usePathname, useRouter } = navigation
 
 export type LinkProps = React.ComponentProps<typeof Link>

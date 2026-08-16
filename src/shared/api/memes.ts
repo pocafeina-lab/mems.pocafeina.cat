@@ -1,21 +1,22 @@
 import { z } from 'zod'
-import type { Locales } from '@viclafouch/meme-studio-utilities/constants'
+import type { Locale } from '@i18n/locales-constants'
 import {
   type Meme,
   memeSchema
 } from '@viclafouch/meme-studio-utilities/schemas'
 import memesEn from './memes-with-text-boxes-en.json'
-import memesFr from './memes-with-text-boxes-fr.json'
 
-export function getMemes({ locale }: { locale: Locales }) {
-  return Promise.resolve(
-    z.array(memeSchema).parse(locale === 'fr' ? memesFr : memesEn)
-  )
+export function getMemes({ locale }: { locale: Locale }) {
+  if (locale !== 'ca') {
+    throw new Error(`Unsupported runtime locale: ${locale}`)
+  }
+
+  return Promise.resolve(z.array(memeSchema).parse(memesEn))
 }
 
 export async function getMeme(
   memeId: Meme['id'],
-  { locale }: { locale: Locales }
+  { locale }: { locale: Locale }
 ) {
   const memes = await getMemes({ locale })
 

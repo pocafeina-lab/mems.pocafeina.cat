@@ -44,7 +44,7 @@ const EmptyContainer = ({ memesPromise }: EmptyContainerProps) => {
         h="full"
       >
         <Image
-          alt="Choose meme"
+          alt="Tria un meme"
           width={360}
           height={308}
           style={{ width: 'auto', height: 'auto' }}
@@ -94,7 +94,7 @@ const EmptyContainer = ({ memesPromise }: EmptyContainerProps) => {
           rounded
           onClick={handleOpenGalleryModal}
         >
-          Parcourir les mèmes
+          {t('common.browseMemes')}
         </Button>
         <InputHiddenButton
           accept="image/png, image/jpeg"
@@ -103,7 +103,7 @@ const EmptyContainer = ({ memesPromise }: EmptyContainerProps) => {
           color="secondaryDark"
           rounded
         >
-          Choisir une image depuis mon appareil
+          {t('common.chooseImage')}
         </InputHiddenButton>
       </Center>
     </>
