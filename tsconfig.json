@@ -1,0 +1,24 @@
+{
+  "extends": "@viclafouch/eslint-config-viclafouch/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      // "@viclafouch/meme-studio-utilities/*": ["../../meme-studio-utilities/lib/*"],
+      "@stores/*": ["stores/*"],
+      "@shared/*": ["shared/*"],
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"],
+      "@studio/*": ["modules/Studio/*"],
+      "@models/*": ["models/*"],
+      "@styled-system/*": ["../styled-system/*"],
+      "@i18n/*": ["i18n/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next"]
+}
