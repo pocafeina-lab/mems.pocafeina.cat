@@ -41,6 +41,8 @@ const Aside = ({ memesPromise }: AsideProps) => {
       bgColor="secondary"
       zIndex={2}
       height="calc(100vh - 5rem)"
+      minH="0"
+      overflow="hidden"
     >
       <styled.header display="flex" width="full">
         <TabButton

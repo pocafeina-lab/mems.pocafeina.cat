@@ -49,6 +49,7 @@ const EmptyContainer = ({ memesPromise }: EmptyContainerProps) => {
           height={308}
           priority
           src="/images/choose-meme.svg"
+          style={{ filter: 'hue-rotate(-85deg) saturate(1.1)' }}
         />
         <styled.p textAlign="center" marginTop="5">
           {t('common.selectAFile')} <br />
@@ -69,9 +70,9 @@ const EmptyContainer = ({ memesPromise }: EmptyContainerProps) => {
             <span
               className={css({
                 textDecoration: 'underline',
-                cursor: 'pointer',
-                color: 'primary'
+                cursor: 'pointer'
               })}
+              style={{ color: '#3f9d68' }}
             >
               {t('common.dropImage')}
             </span>

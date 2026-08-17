@@ -1,10 +1,13 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
+import {
+  getLocalFontFamily,
+  localFontFamilyOptions
+} from '@shared/constants/fonts'
 import { css } from '@styled-system/css'
 import { Box } from '@styled-system/jsx'
 import {
   ALIGN_VERTICAL,
-  FONTS_FAMILY,
   TEXT_ALIGN
 } from '@viclafouch/meme-studio-utilities/constants'
 import { useGlobalInputsRef } from '@viclafouch/meme-studio-utilities/hooks'
@@ -36,10 +39,12 @@ const TextCustomisation = ({
         HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
       >
     ) => {
-      let value = event.target.value as string | boolean
+      let value = event.target.value as string | boolean | number
 
       if (event.target.getAttribute('type') === 'checkbox') {
         value = (event.target as HTMLInputElement).checked
+      } else if (key === 'fontSize' || key === 'boxShadow') {
+        value = Number(event.target.value)
       }
 
       onUpdateTextProperties(textbox.id, {
@@ -62,6 +67,19 @@ const TextCustomisation = ({
     right: t('common.right')
   } as const satisfies { [key in (typeof TEXT_ALIGN)[number]]: string }
 
+  const selectStyle: React.CSSProperties = {
+    color: '#f0f0f0',
+    backgroundColor: '#303030'
+  }
+
+  const getRangeStyle = (value: number, min: number, max: number) => {
+    const progress = ((value - min) / (max - min)) * 100
+
+    return {
+      '--range-progress': `${progress}%`
+    } as React.CSSProperties
+  }
+
   return (
     <Box>
       <Box p="0.8125rem 0.875rem 1.4375rem 0.875rem">
@@ -69,7 +87,6 @@ const TextCustomisation = ({
           <textarea
             className={css({
               w: 'full',
-              fontFamily: 'Arial',
               resize: 'none',
               borderRadius: 'xs',
               padding: '2',
@@ -77,6 +94,7 @@ const TextCustomisation = ({
               borderStyle: 'solid',
               borderColor: 'ButtonHighlight'
             })}
+            style={{ fontFamily: getLocalFontFamily(properties.fontFamily) }}
             spellCheck="false"
             onChange={handleEditText('value')}
             value={properties.value}
@@ -90,64 +108,88 @@ const TextCustomisation = ({
           />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="font-size">{t('common.fontSize')}</label>
+          <label htmlFor={`font-size-${textbox.id}`}>
+            {t('common.fontSize')}
+          </label>
           <input
             type="range"
-            id="font-size"
+            id={`font-size-${textbox.id}`}
             min="1"
             max="100"
             step="1"
+            style={getRangeStyle(Number(properties.fontSize), 1, 100)}
             value={properties.fontSize}
             onChange={handleEditText('fontSize')}
           />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="box-shadow">{t('common.boxShadow')}</label>
+          <label htmlFor={`box-shadow-${textbox.id}`}>
+            {t('common.boxShadow')}
+          </label>
           <input
             type="range"
-            id="box-shadow"
-            min="1"
-            max="100"
+            id={`box-shadow-${textbox.id}`}
+            min="0"
+            max="5"
             step="1"
+            style={getRangeStyle(Number(properties.boxShadow), 0, 5)}
             value={properties.boxShadow}
             onChange={handleEditText('boxShadow')}
           />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="box-shadow">{t('common.color')}</label>
+          <label htmlFor={`color-${textbox.id}`}>{t('common.color')}</label>
           <input
             type="color"
-            id="color"
+            id={`color-${textbox.id}`}
             value={properties.color}
             onChange={handleEditText('color')}
           />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="fontFamily">{t('common.fontFamily')}</label>
+          <label htmlFor={`font-family-${textbox.id}`}>
+            {t('common.fontFamily')}
+          </label>
           <select
-            id="fontFamily"
-            value={properties.fontFamily}
+            id={`font-family-${textbox.id}`}
+            style={selectStyle}
+            value={getLocalFontFamily(properties.fontFamily)}
             onChange={handleEditText('fontFamily')}
           >
-            {FONTS_FAMILY.map((fontName) => {
+            {localFontFamilyOptions.map((fontOption) => {
               return (
-                <option key={fontName} value={fontName}>
-                  {fontName}
+                <option
+                  key={fontOption.label}
+                  value={fontOption.value}
+                  style={{
+                    fontFamily: fontOption.value,
+                    color: '#f0f0f0',
+                    backgroundColor: '#303030'
+                  }}
+                >
+                  {fontOption.label}
                 </option>
               )
             })}
           </select>
         </Fieldset>
         <Fieldset>
-          <label htmlFor="alignVertical">{t('common.verticalAlign')}</label>
+          <label htmlFor={`align-vertical-${textbox.id}`}>
+            {t('common.verticalAlign')}
+          </label>
           <select
-            id="alignVertical"
+            id={`align-vertical-${textbox.id}`}
+            style={selectStyle}
             value={properties.alignVertical}
             onChange={handleEditText('alignVertical')}
           >
             {ALIGN_VERTICAL.map((alignVertical) => {
               return (
-                <option key={alignVertical} value={alignVertical}>
+                <option
+                  key={alignVertical}
+                  value={alignVertical}
+                  style={{ color: '#f0f0f0', backgroundColor: '#303030' }}
+                >
                   {verticalAligns[alignVertical]}
                 </option>
               )
@@ -155,15 +197,22 @@ const TextCustomisation = ({
           </select>
         </Fieldset>
         <Fieldset>
-          <label htmlFor="textAlign">{t('common.horizontalAlignment')}</label>
+          <label htmlFor={`text-align-${textbox.id}`}>
+            {t('common.horizontalAlignment')}
+          </label>
           <select
-            id="textAlign"
+            id={`text-align-${textbox.id}`}
+            style={selectStyle}
             value={properties.textAlign}
             onChange={handleEditText('textAlign')}
           >
             {TEXT_ALIGN.map((textAlign) => {
               return (
-                <option key={textAlign} value={textAlign}>
+                <option
+                  key={textAlign}
+                  value={textAlign}
+                  style={{ color: '#f0f0f0', backgroundColor: '#303030' }}
+                >
                   {horizontalAligns[textAlign]}
                 </option>
               )
@@ -171,12 +220,14 @@ const TextCustomisation = ({
           </select>
         </Fieldset>
         <Fieldset>
-          <label htmlFor="isUppercase">{t('common.textInUppercase')}</label>
+          <label htmlFor={`uppercase-${textbox.id}`}>
+            {t('common.textInUppercase')}
+          </label>
           <input
             type="checkbox"
             onChange={handleEditText('isUppercase')}
             checked={properties.isUppercase}
-            id="isUppercase"
+            id={`uppercase-${textbox.id}`}
           />
         </Fieldset>
       </Box>

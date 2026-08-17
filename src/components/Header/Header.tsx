@@ -27,9 +27,9 @@ const Header = ({ actions = null }: HeaderProps) => {
           <Image
             alt="Logotip de Mems Catalans"
             width={250}
-            height={48}
+            height={66}
             priority
-            src="/images/logo-meme-studio-dark.png"
+            src="/images/logo-pocafeina.png"
           />
         </Link>
       </Box>

@@ -17,8 +17,8 @@ export async function generateMetadata() {
 
 const Page = () => {
   return (
-    <Container maxW="8/12">
-      <Box mt={6}>
+    <Container maxW="3xl" py={12}>
+      <Box>
         <AboutCaMDX />
       </Box>
     </Container>

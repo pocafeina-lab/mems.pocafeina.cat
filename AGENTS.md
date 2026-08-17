@@ -39,6 +39,7 @@
 - Start development with `docker compose up -d app`.
 - Start the static preview with `docker compose --profile static up -d static`.
 - Generate a persistent export with `docker compose run --name mems-catalans-static-export app npm run build`.
+- Clear the disposable host export before copying with `rm -rf ./out/*`.
 - Copy that export with `docker cp mems-catalans-static-export:/workspace/out/. ./out/`.
 - Remove only that disposable export container with `docker rm mems-catalans-static-export`.
 - Any other Docker command requires approval.

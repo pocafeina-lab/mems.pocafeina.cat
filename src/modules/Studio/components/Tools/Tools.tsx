@@ -47,9 +47,9 @@ const Tools = () => {
     }
   }
 
-  const handleShowQaA = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleShowAbout = (event: React.MouseEvent<HTMLButtonElement>) => {
     handleClick(() => {
-      return showModal('qaa', {})
+      return showModal('about', {})
     })(event)
   }
 
@@ -161,8 +161,8 @@ const Tools = () => {
       </styled.ul>
       <styled.ul display="flex" flexDir="column" alignItems="center">
         <ToolsListItem>
-          <Tooltip text={t('qAq.metadataTitle')} position="right">
-            <ToolsButton type="button" onClick={handleShowQaA}>
+          <Tooltip text={t('about.metadataTitle')} position="right">
+            <ToolsButton type="button" onClick={handleShowAbout}>
               <FontAwesomeIcon icon={faQuestionCircle} />
             </ToolsButton>
           </Tooltip>

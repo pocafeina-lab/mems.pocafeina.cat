@@ -691,8 +691,8 @@
     --colors-slate-800: #1e293b;
     --colors-slate-900: #0f172a;
     --colors-slate-950: #020617;
-    --colors-primary: rgb(100, 159, 255);
-    --colors-primary-dark: rgb(48, 91, 161);
+    --colors-primary: #3f9d68;
+    --colors-primary-dark: #21824b;
     --colors-secondary-dark: rgb(48, 48, 48);
     --colors-secondary: rgb(68, 68, 68);
     --colors-secondary-light: rgb(88, 88, 88);
@@ -1361,7 +1361,7 @@
 }
 
   .\--color-widget_rgba\(14\,_42\,_71\,_0\.6\) {
-    --color-widget: rgba(14, 42, 71, 0.6);
+    --color-widget: rgba(8, 122, 45, 0.72);
 }
 
   .border_0\.0625rem_dotted_var\(--color-widget\) {
@@ -1761,7 +1761,7 @@
 }
 
   .\[\&\[aria-selected\=\'true\'\]\]\:--color-widget_rgb\(48\,_91\,_161\)[aria-selected='true'] {
-    --color-widget: rgb(48, 91, 161);
+    --color-widget: #4fc77d;
 }
 
   .\[\&\[data-side\=\'nw\'\]\,_\&\[data-side\=\'se\'\]\]\:cursor_nwse-resize[data-side='nw'],.\[\&\[data-side\=\'nw\'\]\,_\&\[data-side\=\'se\'\]\]\:cursor_nwse-resize[data-side='se'] {
@@ -1805,7 +1805,7 @@
 }
 
   .\[\&\:not\(\:disabled\)\:hover\]\:bg_rgb\(27_65_126\):not(:disabled):hover {
-    background: rgb(27 65 126);
+    background: #065a21;
 }
 
   .\[\&\:not\(\:disabled\)\:hover\]\:bg_\#535353:not(:disabled):hover {

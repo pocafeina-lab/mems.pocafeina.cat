@@ -74,6 +74,7 @@
       "docker compose up -d app": "allow",
       "docker compose --profile static up -d static": "allow",
       "docker compose run --name mems-catalans-static-export app npm run build": "allow",
+      "rm -rf ./out/*": "allow",
       "docker cp mems-catalans-static-export:/workspace/out/. ./out/": "allow",
       "docker rm mems-catalans-static-export": "allow"
     }

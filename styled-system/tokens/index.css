@@ -413,8 +413,8 @@
   --colors-slate-800: #1e293b;
   --colors-slate-900: #0f172a;
   --colors-slate-950: #020617;
-  --colors-primary: rgb(100, 159, 255);
-  --colors-primary-dark: rgb(48, 91, 161);
+  --colors-primary: #3f9d68;
+  --colors-primary-dark: #21824b;
   --colors-secondary-dark: rgb(48, 48, 48);
   --colors-secondary: rgb(68, 68, 68);
   --colors-secondary-light: rgb(88, 88, 88);
@@ -425,5 +425,3 @@
   --breakpoints-xl: 1280px;
   --breakpoints-2xl: 1536px
 }
-  }
-  

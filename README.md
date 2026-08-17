@@ -1,78 +1,77 @@
 # Mems Catalans
 
-Mems Catalans is designed to be fast and provide powerful customization for your memes, while still being simple and easy to use.
+Mems Catalans permet crear mems ràpidament amb plantilles o imatges pròpies.
+L’editor funciona al navegador: no cal cap compte i les creacions no es desen
+en cap servidor.
 
-A list of memes is provided by default but you can also import your own image.
-The editor is privacy-first: no account is required, imported images are
-handled in the browser, and the application does not store your creations on a
-server.
+Pots descarregar el mem personalitzat al dispositiu o copiar-lo al
+porta-retalls.
 
-You have the option of downloading your personalized meme to your device or sharing it directly on your Twitter account. I do not save your meme in our database, so make sure you export your work.
+Web: [mems.pocafeina.cat](https://mems.pocafeina.cat)
 
-Website : [mems.pocafeina.cat](https://mems.pocafeina.cat)
+#### Llengua d’execució
 
-#### Runtime language
+L’aplicació funciona actualment en català (`ca`). Els fitxers de locale en
+anglès es conserven només com a referència; el francès no forma part de
+l’execució.
 
-The application currently runs in Catalan (`ca`). The upstream English locale
-files remain as reference material only; the French locale is not part of the
-runtime.
-
-#### What I use:
+#### Tecnologies
 
 - [Next.js](https://nextjs.org) - Framework React.js
-- [Panda-css](https://panda-css.com) - Built time CSS in JS
-- [Immer](https://immerjs.github.io/immer/docs/introduction) - Immutability library
-- [Next Intl](https://next-intl-docs.vercel.app) - Internationalization
-- [Tanstack Query](https://tanstack.com/query/latest) - Async state Managment
+- [Panda CSS](https://panda-css.com) - CSS-in-JS durant la compilació
+- [Immer](https://immerjs.github.io/immer/docs/introduction) - Biblioteca d’immutabilitat
+- [Next Intl](https://next-intl-docs.vercel.app) - Internacionalització
+- [TanStack Query](https://tanstack.com/query/latest) - Gestió d’estat asíncron
 
-The main application stack is Next.js App Router, React 19, Panda CSS,
-Zustand, Immer, TanStack Query, next-intl, Zod, Font Awesome and TypeScript.
+La pila principal és Next.js App Router, React 19, Panda CSS, Zustand, Immer,
+TanStack Query, next-intl, Zod, Font Awesome i TypeScript.
 
-### Project structure
+### Estructura del projecte
 
 ```text
-src/app/          Next.js routes and static metadata
-src/components/   Shared UI components
-src/modules/      Home page and meme studio features
-src/i18n/         Catalan runtime messages and routing
-src/stores/       Editor and modal state
-src/queries/      TanStack Query providers
-src/shared/       APIs, helpers, hooks and constants
-styled-system/    Generated Panda CSS output
+src/app/          Rutes Next.js i metadata estàtica
+src/components/   Components d’interfície compartits
+src/modules/      Portada i funcionalitats de l’estudi de mems
+src/i18n/         Missatges i routing del runtime català
+src/stores/       Estat de l’editor i dels modals
+src/queries/      Proveïdors de TanStack Query
+src/shared/       APIs, helpers, hooks i constants
+styled-system/    CSS generat per Panda
 ```
 
-### Contributing
+### Contribucions
 
-Any contributions and/or pull requests would be welcome.
+Les contribucions i les pull requests són benvingudes.
 
-### Development with Docker
+### Desenvolupament amb Docker
 
-Node.js, npm, and project dependencies are intentionally kept inside Docker.
-Use the command forms below exactly; alternate argument order or extra flags
-are not included in the project's routine Docker allowlist.
+Node.js, npm i les dependències del projecte es mantenen dins de Docker.
+Utilitza exactament les ordres següents; les variants d’arguments o les opcions
+addicionals no formen part de l’allowlist habitual del projecte.
 
-1. Build the image: `docker compose build app`
-2. Start the development server: `docker compose up -d app`
-3. Open `http://localhost:8080/`
+1. Construir la imatge: `docker compose build app`
+2. Iniciar el servidor de desenvolupament: `docker compose up -d app`
+3. Obrir `http://localhost:8080/`
 
-Rebuild the image after source changes because the Compose setup does not
-bind-mount the repository into the container.
+Cal reconstruir la imatge després dels canvis perquè Compose no munta el
+repositori dins del contenidor.
 
-Run checks with `docker compose run --rm app npm run lint`.
+Executar les comprovacions amb `docker compose run --rm app npm run lint`.
 
-### Static export
+### Exportació estàtica
 
-1. Build the image: `docker compose build app`
-2. Export the application: `docker compose run --name mems-catalans-static-export app npm run build`
-3. Copy the generated artifact: `docker cp mems-catalans-static-export:/workspace/out/. ./out/`
-4. Remove the build container: `docker rm mems-catalans-static-export`
-5. Preview it with Nginx: `docker compose --profile static up -d static`
-6. Open `http://localhost:8081/`
+1. Construir la imatge: `docker compose build app`
+2. Exportar l’aplicació: `docker compose run --name mems-catalans-static-export app npm run build`
+3. Netejar l’artefacte anterior: `rm -rf ./out/*`
+4. Copiar l’artefacte generat: `docker cp mems-catalans-static-export:/workspace/out/. ./out/`
+5. Eliminar el contenidor de build: `docker rm mems-catalans-static-export`
+6. Iniciar la previsualització Nginx: `docker compose --profile static up -d static`
+7. Obrir `http://localhost:8081/`
 
-The primary deployment target is GitHub Pages with the custom domain
-`mems.pocafeina.cat`. An Apache-served static artifact on a VPS is the
-fallback. A Dockerized Next.js runtime is reserved for features that require a
-server.
+L’objectiu principal és GitHub Pages amb el domini personalitzat
+`mems.pocafeina.cat`. Un VPS amb Apache servint l’artefacte estàtic és el
+pla alternatiu. Un runtime Next.js dins Docker queda reservat per a
+funcionalitats que necessitin servidor.
 
-Known build and deployment caveats are tracked in
+Les incidències conegudes de build i desplegament es documenten a
 [`docs/known-issues.md`](docs/known-issues.md).

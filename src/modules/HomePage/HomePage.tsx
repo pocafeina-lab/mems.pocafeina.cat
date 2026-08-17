@@ -4,7 +4,7 @@ import Footer from '@components/Footer'
 import LinkButton from '@components/LinkButton'
 import MemesList from '@components/MemesList'
 import type { Locale } from '@i18n/locales-constants'
-import { getMemes } from '@shared/api/memes'
+import { getFeaturedMemes } from '@shared/api/memes'
 import { css } from '@styled-system/css'
 import { Box, Center, Container, VStack } from '@styled-system/jsx'
 import { particulesBg } from '@styled-system/patterns'
@@ -14,8 +14,7 @@ type PageProps = {
 }
 
 const HomePage = async ({ locale }: PageProps) => {
-  const memes = await getMemes({ locale })
-  const memesSliced = memes.slice(0, 3)
+  const featuredMemes = await getFeaturedMemes({ locale })
   const t = await getTranslations()
 
   return (
@@ -24,9 +23,9 @@ const HomePage = async ({ locale }: PageProps) => {
         <Image
           alt="Logotip de Mems Catalans"
           width={350}
-          height={67}
+          height={93}
           priority
-          src="/images/logo-meme-studio-dark.png"
+          src="/images/logo-pocafeina.png"
         />
         <Container maxW="2xl">
           <p className={css({ mt: '3', fontSize: 'xl', mb: '5' })}>
@@ -57,7 +56,7 @@ const HomePage = async ({ locale }: PageProps) => {
                   height: '100%!important'
                 }
               })}
-              memes={memesSliced}
+              memes={featuredMemes}
             />
           </Box>
         </Container>

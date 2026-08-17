@@ -101,70 +101,74 @@ const Customisation = ({ meme }: CustomisationProps) => {
   }, [handleKeypress])
 
   return (
-    <Box overflowY="auto" overflowX="hidden" pb={10}>
-      <VStack textAlign="center" p="2" m="2" gap={2}>
-        <styled.span display="block">{t('common.customization')}</styled.span>
-        <styled.h1
-          fontSize="sm"
-          lineClamp="1"
-          whiteSpace="nowrap"
-          textOverflow="ellipsis"
-          overflow="hidden"
-          maxW="full"
-        >
-          {meme.name}
-        </styled.h1>
-      </VStack>
-      <VStack gap={0}>
-        {textboxes.map((textbox, index) => {
-          return (
-            <Accordion
-              onToggle={handleToggleAccordion(textbox)}
-              title={preventEmptyTextValue(
-                textbox.properties.value,
-                index,
-                `${t('common.text')} #`
-              )}
-              isOpened={itemIdSelected === textbox.id}
-              key={textbox.id}
-              onAfterOpen={handleAfterOpenAccordion(textbox)}
-              action={
-                <HStack gap={3} alignItems="center">
-                  <Tooltip text={t('common.duplicate')} position="top">
-                    <styled.button
-                      aria-label={t('common.duplicate')}
-                      onClick={handleDuplicateItem(textbox.id)}
-                      type="button"
-                      cursor="pointer"
-                    >
-                      <FontAwesomeIcon icon={faClone} />
-                    </styled.button>
-                  </Tooltip>
-                  <Tooltip text={t('common.delete')} position="top">
-                    <styled.button
-                      aria-label={t('common.delete')}
-                      onClick={handleRemoveItem(textbox.id)}
-                      type="button"
-                      cursor="pointer"
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </styled.button>
-                  </Tooltip>
-                </HStack>
-              }
-            >
-              <TextCustomisation
-                onUpdateTextProperties={updateTextbox}
-                textbox={textbox}
-                index={index}
-              />
-            </Accordion>
-          )
-        })}
-      </VStack>
-      <Button rounded={false} fullWidth onClick={handleAddTextbox}>
-        {t('tools.addText')}
-      </Button>
+    <Box display="flex" flex="1" minH="0" flexDir="column">
+      <Box flex="1" minH="0" overflowY="auto" overflowX="hidden" pb={10}>
+        <VStack textAlign="center" p="2" m="2" gap={2}>
+          <styled.span display="block">{t('common.customization')}</styled.span>
+          <styled.h1
+            fontSize="sm"
+            lineClamp="1"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+            maxW="full"
+          >
+            {meme.name}
+          </styled.h1>
+        </VStack>
+        <VStack gap={0}>
+          {textboxes.map((textbox, index) => {
+            return (
+              <Accordion
+                onToggle={handleToggleAccordion(textbox)}
+                title={preventEmptyTextValue(
+                  textbox.properties.value,
+                  index,
+                  `${t('common.text')} #`
+                )}
+                isOpened={itemIdSelected === textbox.id}
+                key={textbox.id}
+                onAfterOpen={handleAfterOpenAccordion(textbox)}
+                action={
+                  <HStack gap={3} alignItems="center">
+                    <Tooltip text={t('common.duplicate')} position="top">
+                      <styled.button
+                        aria-label={t('common.duplicate')}
+                        onClick={handleDuplicateItem(textbox.id)}
+                        type="button"
+                        cursor="pointer"
+                      >
+                        <FontAwesomeIcon icon={faClone} />
+                      </styled.button>
+                    </Tooltip>
+                    <Tooltip text={t('common.delete')} position="top">
+                      <styled.button
+                        aria-label={t('common.delete')}
+                        onClick={handleRemoveItem(textbox.id)}
+                        type="button"
+                        cursor="pointer"
+                      >
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                      </styled.button>
+                    </Tooltip>
+                  </HStack>
+                }
+              >
+                <TextCustomisation
+                  onUpdateTextProperties={updateTextbox}
+                  textbox={textbox}
+                  index={index}
+                />
+              </Accordion>
+            )
+          })}
+        </VStack>
+      </Box>
+      <Box flexShrink={0}>
+        <Button rounded={false} fullWidth onClick={handleAddTextbox}>
+          {t('tools.addText')}
+        </Button>
+      </Box>
     </Box>
   )
 }

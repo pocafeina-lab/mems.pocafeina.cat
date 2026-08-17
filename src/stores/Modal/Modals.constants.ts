@@ -6,9 +6,9 @@ export const MODALS = {
       return import('@components/Modals/ExportModal')
     })
   },
-  qaa: {
+  about: {
     component: React.lazy(() => {
-      return import('@components/Modals/QaAModal')
+      return import('@components/Modals/AboutModal')
     })
   },
   gallery: {

@@ -12,7 +12,8 @@ export const TabButton = styled('button', {
     paddingY: '5',
     fontSize: '1.2rem',
     '&[aria-current="true"]': {
-      bgColor: 'primary'
+      bgColor: 'primary',
+      color: 'secondary.dark'
     }
   }
 })

@@ -62,9 +62,9 @@ Last observed: 2026-08-16
 ### STATIC-004: local export directory must be clean
 
 - Observation: `out/` is ignored and can retain files from an earlier export when a new container artifact is copied over it.
-- Impact: local preview may expose stale routes that are not part of the current build, even though a clean export is correct.
-- Decision: treat `out/` as disposable build output and validate publication artifacts from a clean directory or clean checkout.
-- Resolution: add an explicit, reviewed cleanup step to the export workflow before publication.
+- Impact: a copy over an existing directory may expose stale routes that are not part of the current build, even though a clean export is correct.
+- Decision: treat `out/` as disposable build output and clear its contents before every export copy.
+- Resolution: resolved locally by adding `rm -rf ./out/*` before the documented `docker cp` step.
 
 ### DEPLOY-001: custom-domain publication is pending
 

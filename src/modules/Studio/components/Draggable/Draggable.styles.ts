@@ -8,10 +8,10 @@ export const DraggableBox = styled('div', {
     zIndex: 1,
     cursor: 'move',
     bgColor: 'transparent',
-    '--color-widget': 'rgba(14, 42, 71, 0.6)',
+    '--color-widget': 'rgba(8, 122, 45, 0.72)',
     border: '0.0625rem dotted var(--color-widget)',
     "&[aria-selected='true']": {
-      '--color-widget': 'rgb(48, 91, 161)'
+      '--color-widget': '#3f9d68'
     }
   }
 })

@@ -8,7 +8,7 @@ export const dynamic = 'force-static'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const memes = await getMemes({ locale: defaultLocale })
-  const staticPaths = ['/', '/create/', '/gallery/', '/about/', '/qa/']
+  const staticPaths = ['/', '/create/', '/gallery/', '/about/']
   const lastModified = new Date()
 
   const staticRoutes: MetadataRoute.Sitemap = staticPaths.map((pathname) => {

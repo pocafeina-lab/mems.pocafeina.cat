@@ -8,9 +8,9 @@ export default {
   duplicate: 'Duplica',
   delete: 'Elimina',
   fontSize: 'Mida de la lletra',
-  boxShadow: 'Ombra',
+  boxShadow: 'Contorn',
   color: 'Color',
-  fontFamily: 'Família tipogràfica',
+  fontFamily: 'Font',
   verticalAlign: 'Alineació vertical',
   horizontalAlignment: 'Alineació horitzontal',
   textInUppercase: 'Text en majúscules',
@@ -22,13 +22,12 @@ export default {
   bottom: 'Inferior',
   selectAFile: 'Selecciona un mem a la galeria',
   or: 'o',
-  dropImage: 'tria una imatge',
+  dropImage: 'puja una imatge',
   noSelectedMeme: 'Cap mem seleccionat',
   browseMemes: 'Explora els mems',
-  chooseImage: 'Tria una imatge del dispositiu',
+  chooseImage: 'Puja una imatge del dispositiu',
   getStarted: 'Comença',
-  intro:
-    'Crea un mem a partir d’imatges JPG o PNG. Edita la imatge i crea el teu mem personalitzat.',
+  intro: 'Crea un mem. Tria una plantilla o puja una imatge.',
   copied: 'Copiat al porta-retalls',
   errors: {
     unknown: 'S’ha produït un error desconegut.'

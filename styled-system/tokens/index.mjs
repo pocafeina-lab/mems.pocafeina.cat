@@ -1708,11 +1708,11 @@ const tokens = {
     "variable": "var(--colors-slate-950)"
   },
   "colors.primary": {
-    "value": "rgb(100, 159, 255)",
+    "value": "#3f9d68",
     "variable": "var(--colors-primary)"
   },
   "colors.primary.dark": {
-    "value": "rgb(48, 91, 161)",
+    "value": "#21824b",
     "variable": "var(--colors-primary-dark)"
   },
   "colors.secondary.dark": {

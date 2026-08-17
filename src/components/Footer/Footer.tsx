@@ -36,9 +36,6 @@ const Footer = () => {
         <li>
           <LinkStyled href="/gallery/">{t('gallery')}</LinkStyled>
         </li>
-        <li>
-          <LinkStyled href="/qa/">{t('qaa')}</LinkStyled>
-        </li>
       </ul>
     </footer>
   )

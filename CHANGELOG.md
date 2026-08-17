@@ -8,6 +8,33 @@ intencionada.
 
 Encara no hi ha canvis pendents de publicar.
 
+## [0.2.0] - 2026-08-17
+
+### Afegit
+
+- Configuració separada per controlar les plantilles destacades i deshabilitades.
+- Alternatives locals i lliures per a les fonts de l’editor.
+- Logotip temporal de pocafeina a la portada i la capçalera.
+
+### Canviat
+
+- Actualitzada la paleta visual del blau al verd de la línia de pocafeina.
+- Reestructurat el layout de personalització de l’editor.
+- Restaurats els selectors dels blocs de text en una sola línia.
+- Millorada la llegibilitat i la identificació dels controls tipogràfics.
+- Fusionades les pàgines d’informació del projecte i l’ajuda de l’editor.
+- Netejat el catàleg i eliminades les plantilles descartades i els seus assets.
+
+### Eliminat
+
+- Eliminat el contingut català de preguntes freqüents duplicat.
+- Eliminat l’indicador de desenvolupament de Next.js de la interfície.
+
+### Corregit
+
+- Corregida la selecció inicial del primer bloc de text.
+- Corregit el desplegament dels controls dels blocs de text.
+
 ## [0.1.0] - 2026-08-16
 
 ### Afegit

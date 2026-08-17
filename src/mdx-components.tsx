@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/heading-has-content */
 import type { MDXComponents } from 'mdx/types'
 import { css } from '@styled-system/css'
 
@@ -5,16 +6,45 @@ import { css } from '@styled-system/css'
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: (props) => {
-      // eslint-disable-next-line jsx-a11y/heading-has-content
-      return <h1 className={css({ fontSize: 'xx-large' })} {...props} />
+      return (
+        <h1
+          className={css({
+            fontSize: 'xx-large',
+            lineHeight: '1.15',
+            marginBottom: '6'
+          })}
+          {...props}
+        />
+      )
     },
     h2: (props) => {
-      // eslint-disable-next-line jsx-a11y/heading-has-content
-      return <h2 className={css({ fontSize: 'x-large' })} {...props} />
+      return (
+        <h2
+          className={css({
+            fontSize: 'x-large',
+            lineHeight: '1.25',
+            marginTop: '10',
+            marginBottom: '3'
+          })}
+          {...props}
+        />
+      )
+    },
+    p: (props) => {
+      return (
+        <p
+          className={css({
+            maxWidth: '48rem',
+            marginBottom: '5',
+            lineHeight: '1.7'
+          })}
+          {...props}
+        />
+      )
     },
     a: (props) => {
       // eslint-disable-next-line jsx-a11y/anchor-has-content
-      return <a className={css({ color: 'primary' })} {...props} />
+      return <a style={{ color: '#3f9d68' }} {...props} />
     },
     ...components
   }

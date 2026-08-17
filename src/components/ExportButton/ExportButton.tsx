@@ -66,7 +66,7 @@ const ExportButton = () => {
   return (
     <Button
       disabled={!meme}
-      color="secondary"
+      color="export"
       rounded
       onClick={handleOpenExportModal}
       startAdornment={<FontAwesomeIcon icon={faArrowCircleDown} />}

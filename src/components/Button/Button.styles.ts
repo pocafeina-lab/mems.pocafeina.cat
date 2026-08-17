@@ -36,11 +36,12 @@ export const button = sva({
     color: {
       primary: {
         root: {
-          color: 'white',
+          color: 'secondary.dark',
           bg: 'primary',
           border: '1px solid transparent',
           '&:not(:disabled):hover': {
-            bg: 'primary.dark'
+            bg: 'primary.dark',
+            color: 'white'
           }
         }
       },
@@ -50,7 +51,17 @@ export const button = sva({
           bg: 'primary.dark',
           border: '1px solid transparent',
           '&:not(:disabled):hover': {
-            bg: 'rgb(27 65 126)'
+            bg: 'primary.dark'
+          }
+        }
+      },
+      export: {
+        root: {
+          color: 'black',
+          bg: '#f2c94c',
+          border: '1px solid transparent',
+          '&:not(:disabled):hover': {
+            bg: '#dcb33f'
           }
         }
       },
