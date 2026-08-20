@@ -6,7 +6,24 @@ intencionada.
 
 ## [No publicat]
 
-Encara no hi ha canvis pendents de publicar.
+### Afegit
+
+- Afegides 18 plantilles catalanes quadrades al catàleg.
+
+### Millorat
+
+- Millorada la navegació per teclat entre els camps de text de l’editor.
+- Millorada la càrrega de fonts abans d’exportar un mem.
+
+### Canviat
+
+- Actualitzats els nous mems catalans perquè els textos s’iniciïn centrats.
+- Normalitzats els assets dels nous mems al format WebP.
+
+### Corregit
+
+- Corregits el preview i la descàrrega de mems exportats.
+- Corregida l’alineació vertical dels textos al preview i a l’exportació.
 
 ## [0.2.0] - 2026-08-17
 

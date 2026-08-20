@@ -5,16 +5,17 @@ import { useTranslations } from 'next-intl'
 import Button from '@components/Button'
 import { faArrowCircleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getLocalFontFamily } from '@shared/constants/fonts'
+import { exportCanvasBlob, waitForTextFonts } from '@shared/helpers/canvas'
 import { useNotifications } from '@shared/hooks/useNotifications'
 import { useShowModal } from '@stores/Modal/Modal.provider'
 import { useMutation } from '@tanstack/react-query'
-import { exportCanvasBlob } from '@viclafouch/meme-studio-utilities/helpers'
 import {
   useMeme,
   useRatiotedTextboxes,
   useTopBlock
 } from '@viclafouch/meme-studio-utilities/hooks'
-import type { Meme } from '@viclafouch/meme-studio-utilities/schemas'
+import type { Meme, TextBox } from '@viclafouch/meme-studio-utilities/schemas'
 
 const ExportButton = () => {
   const meme = useMeme()
@@ -26,14 +27,24 @@ const ExportButton = () => {
 
   const exportCanvasMutation = useMutation({
     mutationFn: async (body: { meme: Meme }) => {
-      await new Promise((resolve) => {
-        setTimeout(resolve, 300)
+      const texts = getScaledTextsByMemeSize().map((text) => {
+        return {
+          ...text,
+          properties: {
+            ...text.properties,
+            fontFamily: getLocalFontFamily(
+              text.properties.fontFamily
+            ) as TextBox['properties']['fontFamily']
+          }
+        }
       })
+
+      await waitForTextFonts(texts)
 
       return exportCanvasBlob({
         meme: body.meme,
         topBlock,
-        texts: getScaledTextsByMemeSize()
+        texts
       })
     },
     onError: () => {

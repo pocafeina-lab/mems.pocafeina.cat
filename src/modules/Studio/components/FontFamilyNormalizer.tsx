@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { getLocalFontFamily } from '@shared/constants/fonts'
+import { waitForTextFonts } from '@shared/helpers/canvas'
 import {
   useItemIdSelected,
   useTextboxes
@@ -14,6 +15,7 @@ const FontFamilyNormalizer = () => {
   const hasInitialized = React.useRef(false)
 
   React.useEffect(() => {
+    let cancelled = false
     const hasUnnormalizedTextboxes = textboxes.some((textbox) => {
       return (
         getLocalFontFamily(textbox.properties.fontFamily) !==
@@ -35,8 +37,20 @@ const FontFamilyNormalizer = () => {
     const firstTextbox = textboxes[0]
 
     if (firstTextbox && !hasUnnormalizedTextboxes && !hasInitialized.current) {
-      hasInitialized.current = true
-      setItemIdSelected(firstTextbox.id, true)
+      const loadFonts = async () => {
+        await waitForTextFonts(textboxes)
+
+        if (!cancelled && !hasInitialized.current) {
+          hasInitialized.current = true
+          setItemIdSelected(firstTextbox.id, true)
+        }
+      }
+
+      void loadFonts()
+    }
+
+    return () => {
+      cancelled = true
     }
   }, [textboxes, updateTextbox, setItemIdSelected])
 

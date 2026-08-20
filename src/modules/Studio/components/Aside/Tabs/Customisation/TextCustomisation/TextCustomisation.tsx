@@ -18,6 +18,7 @@ import { Fieldset } from './TextCustomisation.styles'
 export type TextCustomisationProps = {
   textbox: TextBox
   index: number
+  onTextKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void
   onUpdateTextProperties: (
     textId: TextBox['id'],
     values: Partial<TextBox['properties']>
@@ -27,6 +28,7 @@ export type TextCustomisationProps = {
 const TextCustomisation = ({
   textbox,
   index,
+  onTextKeyDown,
   onUpdateTextProperties
 }: TextCustomisationProps) => {
   const t = useTranslations()
@@ -96,6 +98,7 @@ const TextCustomisation = ({
             })}
             style={{ fontFamily: getLocalFontFamily(properties.fontFamily) }}
             spellCheck="false"
+            onKeyDown={onTextKeyDown}
             onChange={handleEditText('value')}
             value={properties.value}
             rows={5}

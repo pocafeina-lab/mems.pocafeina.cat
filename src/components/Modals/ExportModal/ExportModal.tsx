@@ -23,16 +23,16 @@ const ExportModal = ({ canvasBlob, height, width }: ExportModalProps) => {
   const t = useTranslations()
   const { notifySuccess, notifyError } = useNotifications()
 
-  // eslint-disable-next-line no-restricted-syntax -- URL.createObjectURL must not be called on every render to avoid blob URL memory leaks
-  const imageSrc = React.useMemo(() => {
-    return URL.createObjectURL(canvasBlob)
-  }, [canvasBlob])
+  const [imageSrc, setImageSrc] = React.useState<string | null>(null)
 
   React.useEffect(() => {
+    const objectUrl = URL.createObjectURL(canvasBlob)
+    setImageSrc(objectUrl)
+
     return () => {
-      URL.revokeObjectURL(imageSrc)
+      URL.revokeObjectURL(objectUrl)
     }
-  }, [imageSrc])
+  }, [canvasBlob])
 
   const { copy } = useClipboard()
 
@@ -59,22 +59,24 @@ const ExportModal = ({ canvasBlob, height, width }: ExportModalProps) => {
           return event.preventDefault()
         }}
       >
-        <Image
-          src={imageSrc}
-          className={css({
-            maxW: '600px',
-            maxH: '500px',
-            w: 'full',
-            marginX: 'auto',
-            objectFit: 'contain',
-            boxShadow:
-              '0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
-          })}
-          unoptimized
-          height={height}
-          width={width}
-          alt=""
-        />
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            className={css({
+              maxW: '600px',
+              maxH: '500px',
+              w: 'full',
+              marginX: 'auto',
+              objectFit: 'contain',
+              boxShadow:
+                '0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset'
+            })}
+            unoptimized
+            height={height}
+            width={width}
+            alt=""
+          />
+        ) : null}
       </div>
       <p className={css({ mt: 5 })}>
         {t('common.fullSize')} {width} x {height}
@@ -91,15 +93,17 @@ const ExportModal = ({ canvasBlob, height, width }: ExportModalProps) => {
           md: 'row'
         }}
       >
-        <LinkButton
-          startAdornment={<FontAwesomeIcon icon={faArrowCircleDown} />}
-          href={imageSrc}
-          download="mem.png"
-          rounded
-          color="primaryDark"
-        >
-          {t('common.download')}
-        </LinkButton>
+        {imageSrc ? (
+          <LinkButton
+            startAdornment={<FontAwesomeIcon icon={faArrowCircleDown} />}
+            href={imageSrc}
+            download="mem.png"
+            rounded
+            color="primaryDark"
+          >
+            {t('common.download')}
+          </LinkButton>
+        ) : null}
         <Button
           startAdornment={<FontAwesomeIcon icon={faClipboard} />}
           rounded

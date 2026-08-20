@@ -26,7 +26,8 @@ const Customisation = ({ meme }: CustomisationProps) => {
   const { textboxes, updateTextbox, addItem, removeItem, duplicateItem } =
     useTextboxes()
   const t = useTranslations()
-  const { itemIdSelected, toggleItemIdSelected } = useItemIdSelected()
+  const { itemIdSelected, setItemIdSelected, toggleItemIdSelected } =
+    useItemIdSelected()
   const { getRef } = useGlobalInputsRef()
   const previousItemIdSelected = usePrevious(itemIdSelected)
 
@@ -51,22 +52,61 @@ const Customisation = ({ meme }: CustomisationProps) => {
     }
   }
 
+  const focusTextbox = (item: TextBox) => {
+    const inputElement = getRef(item.id)?.current
+
+    if (inputElement) {
+      const { length } = inputElement.value
+      inputElement.focus()
+      // Set cursor at the end of value
+      inputElement.setSelectionRange(length, length)
+    }
+  }
+
   const handleAfterOpenAccordion = (item: TextBox) => {
     return () => {
-      const inputElement = getRef(item.id)?.current
-
-      if (inputElement) {
-        const { length } = inputElement.value
-        inputElement.focus()
-        // Set cursor at the end of value
-        inputElement.setSelectionRange(length, length)
-      }
+      focusTextbox(item)
     }
   }
 
   const handleToggleAccordion = (item: TextBox) => {
     return () => {
       toggleItemIdSelected(item.id)
+    }
+  }
+
+  const handleTextKeyDown = (itemId: TextBox['id']) => {
+    return (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (
+        event.key !== 'Tab' ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        textboxes.length < 2
+      ) {
+        return
+      }
+
+      const currentIndex = textboxes.findIndex(({ id }) => {
+        return id === itemId
+      })
+
+      if (currentIndex === -1) {
+        return
+      }
+
+      const direction = event.shiftKey ? -1 : 1
+      const nextIndex =
+        (currentIndex + direction + textboxes.length) % textboxes.length
+      const nextTextbox = textboxes[nextIndex]
+
+      if (!nextTextbox || !getRef(nextTextbox.id)?.current) {
+        return
+      }
+
+      event.preventDefault()
+      setItemIdSelected(nextTextbox.id, true)
+      focusTextbox(nextTextbox)
     }
   }
 
@@ -156,6 +196,7 @@ const Customisation = ({ meme }: CustomisationProps) => {
               >
                 <TextCustomisation
                   onUpdateTextProperties={updateTextbox}
+                  onTextKeyDown={handleTextKeyDown(textbox.id)}
                   textbox={textbox}
                   index={index}
                 />

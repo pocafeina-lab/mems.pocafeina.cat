@@ -2,15 +2,17 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { drawText, waitForTextFonts } from '@shared/helpers/canvas'
 import { css } from '@styled-system/css'
 import { Box } from '@styled-system/jsx'
 import {
   useCanvasDimensions,
-  useDrawing,
+  useIsomorphicLayoutEffect,
   useItemIdSelected,
   useMeme,
   useTextboxes,
-  useTopBlock
+  useTopBlock,
+  useWindowSizeCallback
 } from '@viclafouch/meme-studio-utilities/hooks'
 import type { Meme, TextBox } from '@viclafouch/meme-studio-utilities/schemas'
 import Draggable from '../Draggable'
@@ -21,14 +23,66 @@ const Canvas = () => {
   const canvasElRef = React.useRef<HTMLCanvasElement>(null!)
   const { textboxes, updateTextbox } = useTextboxes()
   const containerRef = React.useRef<HTMLDivElement>(null!)
-  const { canvasDimensions, calculByAspectRatio } = useCanvasDimensions()
+  const { canvasDimensions, calculByAspectRatio, resize } =
+    useCanvasDimensions()
   const topBlock = useTopBlock()
   const { itemIdSelected, setItemIdSelected } = useItemIdSelected()
 
-  useDrawing({
-    canvasElRef,
-    containerRef
-  })
+  useWindowSizeCallback(resize, { elementRef: containerRef })
+
+  useIsomorphicLayoutEffect(() => {
+    const canvasElement = canvasElRef.current
+
+    if (!canvasElement || !canvasDimensions.height) {
+      return () => {}
+    }
+
+    let cancelled = false
+    let frame: number | undefined
+
+    const draw = () => {
+      if (cancelled) {
+        return
+      }
+
+      canvasElement.width = canvasDimensions.width
+      canvasElement.height = canvasDimensions.height
+
+      const context2D = canvasElement.getContext('2d')
+
+      if (!context2D) {
+        return
+      }
+
+      for (const textbox of textboxes) {
+        drawText(textbox, context2D)
+      }
+    }
+
+    const scheduleDraw = () => {
+      frame = requestAnimationFrame(draw)
+    }
+
+    scheduleDraw()
+
+    const redrawAfterFonts = async () => {
+      await waitForTextFonts(textboxes)
+
+      if (!cancelled) {
+        scheduleDraw()
+      }
+    }
+
+    void redrawAfterFonts()
+
+    return () => {
+      cancelled = true
+
+      if (frame !== undefined) {
+        cancelAnimationFrame(frame)
+      }
+    }
+  }, [canvasDimensions, textboxes])
 
   // eslint-disable-next-line no-restricted-syntax -- Draggable is React.memo, callback must be stable to prevent re-renders
   const onDraggableClick = React.useCallback(
