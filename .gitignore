@@ -26,5 +26,6 @@ out
 tsconfig.tsbuildinfo
 .vercel
 .idea
+.claude
 
 certificates

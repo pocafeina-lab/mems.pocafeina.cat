@@ -69,6 +69,8 @@ Last observed: 2026-08-16
 ### DEPLOY-001: custom-domain publication is pending
 
 - Observation: the intended public origin is `https://mems.pocafeina.cat` and GitHub Pages is the primary target.
-- Impact: DNS, repository settings, and the publication workflow are not configured yet.
+- Impact: DNS and repository Pages settings are not configured yet, so the first
+  public deployment and certificate validation are still pending.
 - Decision: prepare and validate the static artifact first; do not publish or change remotes without explicit approval.
-- Resolution: configure GitHub Pages, `CNAME`, DNS, and the deployment workflow after the static browser checks pass.
+- Resolution: the deployment workflow and `public/CNAME` are prepared. Configure
+  GitHub Pages and DNS, then verify the first public deployment and HTTPS.

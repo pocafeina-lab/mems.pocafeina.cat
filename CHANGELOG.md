@@ -6,10 +6,15 @@ intencionada.
 
 ## [No publicat]
 
+Encara no hi ha canvis pendents de publicar.
+
+## [0.3.0] - 2026-08-20
+
 ### Afegit
 
 - Afegides 18 plantilles catalanes quadrades al catàleg.
 - Afegida una marca d’aigua vertical als mems generats.
+- Afegit el desplegament estàtic automatitzat a GitHub Pages.
 
 ### Millorat
 

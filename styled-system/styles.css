@@ -741,19 +741,6 @@
 }
 }
 
-  @keyframes octocat {
-    0%,100% {
-      transform: rotate(0);
-}
-
-    20%,60% {
-      transform: rotate(-25deg);
-}
-
-    40%,80% {
-      transform: rotate(10deg);
-}
-}
 }
 
 @layer utilities{
@@ -1834,10 +1821,6 @@
 
   .\[\&\:not\(\:disabled\)\:hover\]\:text_\#c5c5c5:not(:disabled):hover {
     color: #c5c5c5;
-}
-
-  .\[\&\:hover_svg\]\:\[\&_\.github-arm\]\:animation_octocat_560ms_ease-in-out:hover svg .github-arm {
-    animation: octocat 560ms ease-in-out;
 }
 
   .\[\&\:hover\]\:\[\&_\>_h3\]\:vis_visible:hover > h3 {
