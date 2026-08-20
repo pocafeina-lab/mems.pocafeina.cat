@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNotifications } from '@shared/hooks/useNotifications'
 import { css } from '@styled-system/css'
 import { Box, Flex } from '@styled-system/jsx'
-import { useClipboard } from '@viclafouch/meme-studio-utilities/hooks'
 
 export type ExportModalProps = {
   canvasBlob: Blob
@@ -34,16 +33,31 @@ const ExportModal = ({ canvasBlob, height, width }: ExportModalProps) => {
     }
   }, [canvasBlob])
 
-  const { copy } = useClipboard()
-
   const handleCopy = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
     try {
-      await copy(canvasBlob)
+      if (
+        !window.isSecureContext ||
+        typeof navigator.clipboard?.write !== 'function' ||
+        typeof ClipboardItem === 'undefined'
+      ) {
+        throw new Error('Image clipboard is unavailable')
+      }
+
+      if (canvasBlob.type !== 'image/png') {
+        throw new Error(`Unsupported clipboard MIME: ${canvasBlob.type}`)
+      }
+
+      await navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': canvasBlob })
+      ])
       notifySuccess('common.copied')
     } catch (error) {
-      notifyError()
+      // Keep clipboard failures visible when browser support differs.
+      // eslint-disable-next-line no-console
+      console.error('Failed to copy exported meme image', error)
+      notifyError('common.errors.copy')
     }
   }
 

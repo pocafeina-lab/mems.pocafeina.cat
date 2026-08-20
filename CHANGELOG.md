@@ -8,6 +8,13 @@ intencionada.
 
 Encara no hi ha canvis pendents de publicar.
 
+## [0.3.1] - 2026-08-20
+
+### Corregit
+
+- Corregida la còpia d’imatges al porta-retalls en navegadors com Firefox.
+- Afegit un missatge específic quan el navegador no permet copiar la imatge.
+
 ## [0.3.0] - 2026-08-20
 
 ### Afegit

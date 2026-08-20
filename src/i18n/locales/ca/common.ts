@@ -30,6 +30,7 @@ export default {
   intro: 'Crea un mem. Tria una plantilla o puja una imatge.',
   copied: 'Copiat al porta-retalls',
   errors: {
-    unknown: 'S’ha produït un error desconegut.'
+    unknown: 'S’ha produït un error desconegut.',
+    copy: 'No s’ha pogut copiar la imatge. Prova de descarregar-la.'
   }
 } as const

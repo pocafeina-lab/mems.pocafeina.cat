@@ -33,6 +33,7 @@ export default {
     'Create a meme from JPG or PNG images. Edit your image and make your custom meme.',
   copied: 'Copied to clipboard',
   errors: {
-    unknown: 'An unknown error has occurred.'
+    unknown: 'An unknown error has occurred.',
+    copy: 'The image could not be copied. Try downloading it instead.'
   }
 } as const
