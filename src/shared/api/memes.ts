@@ -16,9 +16,15 @@ export function getMemes({ locale }: { locale: Locale }) {
   const memes = z.array(memeSchema).parse(memesEn)
 
   return Promise.resolve(
-    memes.filter((meme) => {
-      return !disabledIds.has(meme.id)
-    })
+    memes
+      .filter((meme) => {
+        return !disabledIds.has(meme.id)
+      })
+      .toSorted((first, second) => {
+        return first.name.localeCompare(second.name, 'ca', {
+          sensitivity: 'base'
+        })
+      })
   )
 }
 

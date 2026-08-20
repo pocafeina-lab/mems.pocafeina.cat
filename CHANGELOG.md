@@ -20,6 +20,7 @@ intencionada.
 
 - Actualitzats els nous mems catalans perquè els textos s’iniciïn centrats.
 - Normalitzats els assets dels nous mems al format WebP.
+- Ordenada alfabèticament la galeria de mems segons la col·lació catalana.
 
 ### Corregit
 
