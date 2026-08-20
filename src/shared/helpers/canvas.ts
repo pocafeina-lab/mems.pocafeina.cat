@@ -3,6 +3,8 @@ import type { Meme, TextBox } from '@viclafouch/meme-studio-utilities/schemas'
 
 const PADDING_INLINE = 4
 const PADDING_BLOCK = 8
+const WATERMARK_IMAGE_SRC = '/images/watermark.png'
+const WATERMARK_BASE_CANVAS_WIDTH = 600
 
 type Line = {
   value: string
@@ -30,14 +32,14 @@ export async function waitForTextFonts(textboxes: TextBox[]) {
     return
   }
 
-  await Promise.allSettled(
-    textboxes.map(({ properties }) => {
+  await Promise.allSettled([
+    ...textboxes.map(({ properties }) => {
       return document.fonts.load(
         getFont(16, properties.fontFamily),
         properties.value
       )
     })
-  )
+  ])
   await document.fonts.ready
 }
 
@@ -172,6 +174,48 @@ const getVerticalBounds = (layouts: LineLayout[], linesHeight: number) => {
   return { top, bottom }
 }
 
+let watermarkImagePromise: Promise<HTMLImageElement> | null = null
+
+export const loadWatermarkImage = () => {
+  if (!watermarkImagePromise) {
+    watermarkImagePromise = new Promise<HTMLImageElement>((resolve, reject) => {
+      const image = new Image()
+
+      image.onload = () => {
+        resolve(image)
+      }
+
+      image.onerror = () => {
+        reject(
+          new Error(`Could not load watermark image: ${WATERMARK_IMAGE_SRC}`)
+        )
+      }
+
+      image.src = WATERMARK_IMAGE_SRC
+    })
+  }
+
+  return watermarkImagePromise
+}
+
+export const drawWatermark = (
+  context2D: CanvasRenderingContext2D,
+  watermarkImage: HTMLImageElement
+) => {
+  const scale = context2D.canvas.width / WATERMARK_BASE_CANVAS_WIDTH
+  const width = watermarkImage.naturalWidth * scale
+  const height = watermarkImage.naturalHeight * scale
+  const padding = 6 * scale
+
+  context2D.drawImage(
+    watermarkImage,
+    context2D.canvas.width - width - padding,
+    context2D.canvas.height - height - padding,
+    width,
+    height
+  )
+}
+
 export const drawText = (
   textbox: TextBox,
   context2D: CanvasRenderingContext2D
@@ -297,6 +341,10 @@ export async function exportCanvasBlob({
   } else {
     context2D.drawImage(imageElement, 0, 0, meme.width, meme.height)
   }
+
+  const watermarkImage = await loadWatermarkImage()
+
+  drawWatermark(context2D, watermarkImage)
 
   for (const text of texts) {
     drawText(text, context2D)

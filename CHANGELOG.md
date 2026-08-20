@@ -9,6 +9,7 @@ intencionada.
 ### Afegit
 
 - Afegides 18 plantilles catalanes quadrades al catàleg.
+- Afegida una marca d’aigua vertical als mems generats.
 
 ### Millorat
 

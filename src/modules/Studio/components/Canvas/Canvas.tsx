@@ -2,7 +2,12 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { drawText, waitForTextFonts } from '@shared/helpers/canvas'
+import {
+  drawText,
+  drawWatermark,
+  loadWatermarkImage,
+  waitForTextFonts
+} from '@shared/helpers/canvas'
 import { css } from '@styled-system/css'
 import { Box } from '@styled-system/jsx'
 import {
@@ -40,7 +45,7 @@ const Canvas = () => {
     let cancelled = false
     let frame: number | undefined
 
-    const draw = () => {
+    const draw = (watermarkImage?: HTMLImageElement) => {
       if (cancelled) {
         return
       }
@@ -54,26 +59,37 @@ const Canvas = () => {
         return
       }
 
+      if (watermarkImage) {
+        drawWatermark(context2D, watermarkImage)
+      }
+
       for (const textbox of textboxes) {
         drawText(textbox, context2D)
       }
     }
 
-    const scheduleDraw = () => {
-      frame = requestAnimationFrame(draw)
+    const scheduleDraw = (watermarkImage?: HTMLImageElement) => {
+      frame = requestAnimationFrame(() => {
+        draw(watermarkImage)
+      })
     }
 
-    scheduleDraw()
-
-    const redrawAfterFonts = async () => {
-      await waitForTextFonts(textboxes)
+    const drawWhenReady = async () => {
+      const [watermarkImage] = await Promise.all([
+        loadWatermarkImage(),
+        waitForTextFonts(textboxes)
+      ])
 
       if (!cancelled) {
-        scheduleDraw()
+        scheduleDraw(watermarkImage)
       }
     }
 
-    void redrawAfterFonts()
+    void drawWhenReady().catch(() => {
+      if (!cancelled) {
+        scheduleDraw()
+      }
+    })
 
     return () => {
       cancelled = true
