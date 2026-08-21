@@ -7,7 +7,7 @@ export const useNotifications = () => {
   type TextKey = Parameters<typeof t>[0]
 
   const notifyError = (text?: TextKey) => {
-    toast(text || t('common.errors.unknown'), {
+    toast(t(text ?? 'common.errors.unknown'), {
       type: 'error'
     })
   }

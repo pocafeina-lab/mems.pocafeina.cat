@@ -8,6 +8,12 @@ intencionada.
 
 Encara no hi ha canvis pendents de publicar.
 
+## [0.3.2] - 2026-08-21
+
+### Corregit
+
+- Corregida la traducció dels missatges d’error contextuals.
+
 ## [0.3.1] - 2026-08-20
 
 ### Corregit
