@@ -23,13 +23,16 @@ aspectes es concreten quan una iniciativa es selecciona per treballar-hi.
 - Adaptar els controls tàctils.
 - Millorar l’obertura i el tancament dels panells i modals.
 
+### Pàgina 404
+
+- Millorar el disseny visual i la informació de la pàgina de ruta no trobada.
+
 ### Catàleg de plantilles
 
 - Afegir cerca per nom i paraules clau.
 - Mostrar sempre els noms de les plantilles.
 - Incorporar un estat sense resultats.
 - Identificar millor les plantilles destacades.
-- Facilitar l’accés al catàleg complet des de la portada.
 
 ### Edició
 
@@ -45,7 +48,6 @@ aspectes es concreten quan una iniciativa es selecciona per treballar-hi.
 - Evitar exportacions duplicades.
 - Generar noms de fitxer descriptius.
 - Afegir compartició nativa quan el navegador ho permeti.
-- Explicar quan no es pot copiar la imatge al porta-retalls.
 
 ### Contingut del catàleg
 

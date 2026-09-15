@@ -4,7 +4,7 @@ This document records non-blocking warnings and deferred technical work. It is
 updated when a check changes, a deployment decision is made, or an issue is
 resolved.
 
-Last observed: 2026-08-16
+Last observed: 2026-09-16
 
 ## Build and Tooling
 
@@ -45,19 +45,25 @@ Last observed: 2026-08-16
 - Decision: accept this behavior for the new domain unless real legacy aliases need to be preserved.
 - Resolution: add explicit host redirects or generated alias pages if concrete legacy URLs are identified.
 
-### STATIC-002: deployment-specific error documents
+### STATIC-002: 404 page presentation
 
-- Observation: a plain static host must be configured to serve the exported `404.html` for missing routes.
-- Impact: without that configuration, the host may show its generic 404 page instead of Mems Catalans' Catalan page.
-- Decision: the local Nginx preview uses `error_page 404 /404.html`; deployment configuration remains target-specific.
-- Resolution: verify the custom error document when GitHub Pages is configured for `mems.pocafeina.cat`.
+- Observation: GitHub Pages serves the exported `404.html` for missing routes,
+  and the Catalan page is shown correctly.
+- Impact: the page is functional but its visual presentation is poor.
+- Decision: consider the routing and deployment behavior resolved; keep the
+  visual redesign as product work.
+- Resolution: verified on the public domain. The remaining presentation work
+  is tracked in `docs/product-roadmap.md`.
 
 ### STATIC-003: browser-level editor validation
 
-- Observation: the export, direct routes, and assets have been checked with Docker and HTTP requests.
-- Impact: browser interactions such as image import, text editing, and meme export still need manual verification on the static artifact.
-- Decision: complete browser-level validation before treating GitHub Pages as approved for publication.
-- Resolution: test the editor through the Nginx preview at representative desktop viewport sizes.
+- Observation: the current public release has been checked in the browser
+  and the editor works satisfactorily on the static deployment.
+- Impact: no known static-artifact or editor blocker remains for the current
+  release.
+- Decision: consider the browser validation gate complete for this release.
+- Resolution: resolved by validating the public routes and the main editor
+  workflow, including meme creation and export.
 
 ### STATIC-004: local export directory must be clean
 
@@ -66,11 +72,11 @@ Last observed: 2026-08-16
 - Decision: treat `out/` as disposable build output and clear its contents before every export copy.
 - Resolution: resolved locally by adding `rm -rf ./out/*` before the documented `docker cp` step.
 
-### DEPLOY-001: custom-domain publication is pending
+### DEPLOY-001: custom-domain publication is operational
 
 - Observation: the intended public origin is `https://mems.pocafeina.cat` and GitHub Pages is the primary target.
-- Impact: DNS and repository Pages settings are not configured yet, so the first
-  public deployment and certificate validation are still pending.
-- Decision: prepare and validate the static artifact first; do not publish or change remotes without explicit approval.
-- Resolution: the deployment workflow and `public/CNAME` are prepared. Configure
-  GitHub Pages and DNS, then verify the first public deployment and HTTPS.
+- Impact: none known; the public site is available over HTTPS.
+- Decision: consider the custom-domain publication complete for the current
+  release.
+- Resolution: GitHub Pages, the custom domain, the certificate, and the public
+  deployment have been verified.
