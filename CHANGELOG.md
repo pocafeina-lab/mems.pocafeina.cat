@@ -8,6 +8,13 @@ intencionada.
 
 Encara no hi ha canvis pendents de publicar.
 
+## [0.4.0] - 2026-09-16
+
+### Afegit
+
+- Afegides les icones de l’aplicació i una targeta social per millorar la
+  identificació de Mems Catalans quan es comparteix el web.
+
 ## [0.3.2] - 2026-08-21
 
 ### Corregit
