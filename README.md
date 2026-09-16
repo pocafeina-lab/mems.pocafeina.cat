@@ -36,6 +36,8 @@ src/i18n/         Missatges i routing del runtime català
 src/stores/       Estat de l’editor i dels modals
 src/queries/      Proveïdors de TanStack Query
 src/shared/       APIs, helpers, hooks i constants
+assets/branding/  Originals de marca no publicats
+public/           Assets estàtics servits per l’aplicació
 styled-system/    CSS generat per Panda
 ```
 

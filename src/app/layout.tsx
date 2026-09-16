@@ -19,6 +19,37 @@ export const metadata: Metadata = {
   title: {
     template: '%s | Mems Catalans',
     default: 'Mems Catalans'
+  },
+  description:
+    'Afegeix textos personalitzables a plantilles o imatges pròpies i crea mems en català.',
+  openGraph: {
+    title: 'Mems Catalans',
+    description:
+      'Afegeix textos personalitzables a plantilles o imatges pròpies i crea mems en català.',
+    siteName: 'Mems Catalans',
+    locale: 'ca_ES',
+    type: 'website',
+    images: [
+      {
+        url: '/images/og-card.png',
+        width: 1730,
+        height: 909,
+        type: 'image/png',
+        alt: 'Generador de mems 2.0 de Mems Catalans, per Pocafeina.cat'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mems Catalans',
+    description:
+      'Afegeix textos personalitzables a plantilles o imatges pròpies i crea mems en català.',
+    images: [
+      {
+        url: '/images/og-card.png',
+        alt: 'Generador de mems 2.0 de Mems Catalans, per Pocafeina.cat'
+      }
+    ]
   }
 }
 

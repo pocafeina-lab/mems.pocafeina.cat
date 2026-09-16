@@ -60,7 +60,7 @@ aspectes es concreten quan una iniciativa es selecciona per treballar-hi.
 
 - Crear una identitat definitiva per a Mems Catalans.
 - Mantenir pocafeina.cat com a marca secundària.
-- Unificar logotip, icones i paleta visual.
+- Unificar el logotip i la paleta visual amb les icones de l’aplicació.
 
 ## Idees per explorar
 
