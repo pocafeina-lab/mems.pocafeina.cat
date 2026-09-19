@@ -6,7 +6,10 @@ intencionada.
 
 ## [No publicat]
 
-Encara no hi ha canvis pendents de publicar.
+### Corregit
+
+- Actualitzades les dependències directes de seguretat `next` a `16.3.5` i
+  `next-intl` a `4.9.2`, mantenint l’exportació estàtica i l’editor.
 
 ## [0.4.0] - 2026-09-16
 

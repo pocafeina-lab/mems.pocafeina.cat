@@ -4,16 +4,17 @@ This document records non-blocking warnings and deferred technical work. It is
 updated when a check changes, a deployment decision is made, or an issue is
 resolved.
 
-Last observed: 2026-09-16
+Last observed: 2026-09-19
 
 ## Build and Tooling
 
 ### DEP-001: inherited dependency vulnerabilities
 
-- Observation: the Docker image install reports 27 vulnerabilities (3 low, 13 moderate, 11 high).
-- Impact: lint and production builds pass; the application has not received an automatic dependency upgrade.
-- Decision: defer `npm audit fix` and especially `npm audit fix --force` until dependency changes are reviewed explicitly.
-- Resolution: review the dependency tree, identify direct versus transitive vulnerabilities, and update packages deliberately.
+- Observation: on 2026-09-16, Docker `npm audit --json` reported 31 vulnerable packages (4 low, 10 moderate, 16 high, 1 critical). After the controlled direct update on 2026-09-19, it reports 26 vulnerable packages (3 low, 9 moderate, 14 high, 0 critical). `npm audit --omit=dev --json` decreased from 9 affected production packages (1 low, 3 moderate, 4 high, 1 critical) to 3 (0 low, 2 moderate, 1 high, 0 critical).
+- Scope: `next@16.3.5` and `next-intl@4.9.2` are direct production dependencies and no longer appear as audit findings. `@pandacss/dev@1.9.1` remains a direct development dependency with findings, while the remaining audit entries are transitive.
+- Impact: the critical finding and the direct framework findings are resolved. The public deployment does not run the Next.js server or image optimization API, which limits the applicability of some remaining server- and build-specific advisories. The residual production findings are `baseline-browser-mapping`, `mdast-util-to-hast`, and `picomatch`.
+- Decision: defer `npm audit fix` and especially `npm audit fix --force`. Investigate the remaining build-only dependency tree separately, with Panda CSS and its generated output explicitly excluded from this change.
+- Resolution: updated `next` to `16.3.5` and `next-intl` to the first stable fixed release, `4.9.2`, and regenerated the lockfile in Docker. Residual remediation remains open for the separate dependency-maintenance investigation.
 
 ### NEXT-001: middleware convention deprecated
 
@@ -24,10 +25,10 @@ Last observed: 2026-09-16
 
 ### TOOL-001: stale baseline browser data
 
-- Observation: `baseline-browser-mapping` reports that its data is more than two months old.
-- Impact: this is a build warning and does not currently affect the generated application.
-- Decision: do not add or upgrade dependencies only to silence the warning.
-- Resolution: update the package as part of a reviewed dependency maintenance task.
+- Observation: the current Docker production build no longer emits the stale-data warning.
+- Impact: no stale browser-data build warning was observed. `baseline-browser-mapping@2.10.12` remains covered by the dependency audit under `DEP-001`.
+- Decision: close this tooling-warning item without treating the related dependency audit finding as resolved.
+- Resolution: resolved as a build-warning issue by the 2026-09-16 production build; any package update remains part of the reviewed dependency-maintenance work.
 
 ### DOCKER-001: Buildx is unavailable
 
