@@ -6,6 +6,10 @@ intencionada.
 
 ## [No publicat]
 
+Encara no hi ha canvis pendents de publicar.
+
+## [0.4.1] - 2026-09-19
+
 ### Corregit
 
 - Actualitzades les dependències directes de seguretat `next` a `16.3.5` i
