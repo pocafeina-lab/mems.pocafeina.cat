@@ -6,6 +6,10 @@ intencionada.
 
 ## [No publicat]
 
+Encara no hi ha canvis pendents de publicar.
+
+## [0.4.2] - 2026-09-20
+
 ### Corregit
 
 - Actualitzat el lockfile de producció per eliminar les vulnerabilitats
