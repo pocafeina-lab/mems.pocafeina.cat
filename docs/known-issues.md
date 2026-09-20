@@ -4,17 +4,17 @@ This document records non-blocking warnings and deferred technical work. It is
 updated when a check changes, a deployment decision is made, or an issue is
 resolved.
 
-Last observed: 2026-09-19
+Last observed: 2026-09-20
 
 ## Build and Tooling
 
 ### DEP-001: inherited dependency vulnerabilities
 
-- Observation: on 2026-09-16, Docker `npm audit --json` reported 31 vulnerable packages (4 low, 10 moderate, 16 high, 1 critical). After the controlled direct update on 2026-09-19, it reports 26 vulnerable packages (3 low, 9 moderate, 14 high, 0 critical). `npm audit --omit=dev --json` decreased from 9 affected production packages (1 low, 3 moderate, 4 high, 1 critical) to 3 (0 low, 2 moderate, 1 high, 0 critical).
-- Scope: `next@16.3.5` and `next-intl@4.9.2` are direct production dependencies and no longer appear as audit findings. `@pandacss/dev@1.9.1` remains a direct development dependency with findings, while the remaining audit entries are transitive.
-- Impact: the critical finding and the direct framework findings are resolved. The public deployment does not run the Next.js server or image optimization API, which limits the applicability of some remaining server- and build-specific advisories. The residual production findings are `baseline-browser-mapping`, `mdast-util-to-hast`, and `picomatch`.
+- Observation: on 2026-09-16, Docker `npm audit --json` reported 31 vulnerable packages (4 low, 10 moderate, 16 high, 1 critical). After the controlled direct update on 2026-09-19, it reported 26 vulnerable packages (3 low, 9 moderate, 14 high, 0 critical). The focused lockfile update on 2026-09-20 reports 24 vulnerable packages (3 low, 7 moderate, 14 high, 0 critical), while `npm audit --omit=dev --json` reports no vulnerable production packages.
+- Scope: `next@16.3.5` and `next-intl@4.9.2` are direct production dependencies and no longer appear as audit findings. The focused update resolved the remaining production findings through `baseline-browser-mapping@2.11.25`, `mdast-util-to-hast@13.2.1`, `picomatch@2.3.2`, and `@parcel/watcher@2.6.0`. `@pandacss/dev@1.9.1` remains a direct development dependency with findings, while the remaining audit entries are transitive.
+- Impact: the critical finding, the direct framework findings, and the remaining production findings are resolved. The public deployment does not run the Next.js server or image optimization API, which limits the applicability of some remaining server- and build-specific advisories. The residual audit findings are development-only.
 - Decision: defer `npm audit fix` and especially `npm audit fix --force`. Investigate the remaining build-only dependency tree separately, with Panda CSS and its generated output explicitly excluded from this change.
-- Resolution: updated `next` to `16.3.5` and `next-intl` to the first stable fixed release, `4.9.2`, and regenerated the lockfile in Docker. Residual remediation remains open for the separate dependency-maintenance investigation.
+- Resolution: updated `next` to `16.3.5` and `next-intl` to the first stable fixed release, `4.9.2`, then regenerated the lockfile in Docker. The focused dependency-maintenance pass completed on 2026-09-20 without changing `package.json`, Panda CSS, ESLint, or application source.
 
 ### NEXT-001: middleware convention deprecated
 
@@ -26,9 +26,9 @@ Last observed: 2026-09-19
 ### TOOL-001: stale baseline browser data
 
 - Observation: the current Docker production build no longer emits the stale-data warning.
-- Impact: no stale browser-data build warning was observed. `baseline-browser-mapping@2.10.12` remains covered by the dependency audit under `DEP-001`.
-- Decision: close this tooling-warning item without treating the related dependency audit finding as resolved.
-- Resolution: resolved as a build-warning issue by the 2026-09-16 production build; any package update remains part of the reviewed dependency-maintenance work.
+- Impact: no stale browser-data build warning or related production audit finding is observed.
+- Decision: close this tooling-warning item.
+- Resolution: resolved as a build-warning issue by the 2026-09-16 production build and as a dependency audit issue by the 2026-09-20 focused lockfile update.
 
 ### DOCKER-001: Buildx is unavailable
 

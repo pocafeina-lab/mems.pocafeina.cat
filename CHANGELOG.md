@@ -6,7 +6,10 @@ intencionada.
 
 ## [No publicat]
 
-Encara no hi ha canvis pendents de publicar.
+### Corregit
+
+- Actualitzat el lockfile de producció per eliminar les vulnerabilitats
+  transitives restants sense modificar el codi de l’aplicació.
 
 ## [0.4.1] - 2026-09-19
 
