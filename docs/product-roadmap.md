@@ -6,6 +6,15 @@ aspectes es concreten quan una iniciativa es selecciona per treballar-hi.
 
 ## Pendents
 
+### Manteniment tècnic
+
+- Revisar la cadena de build de Panda CSS i ESLint per reduir els avisos de
+  dependències de desenvolupament sense aplicar salts majors automàtics.
+- Valorar actualitzacions majors de Next.js, React i Node.js només amb una
+  matriu de compatibilitat i validació completa de l’exportació estàtica.
+- Revisar l’alliberament de recursos de les imatges locals i el rendiment de
+  l’editor quan hi ha molts blocs de text.
+
 ### Editor intern de plantilles
 
 - Carregar la imatge base.

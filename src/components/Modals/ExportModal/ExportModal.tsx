@@ -26,6 +26,8 @@ const ExportModal = ({ canvasBlob, height, width }: ExportModalProps) => {
 
   React.useEffect(() => {
     const objectUrl = URL.createObjectURL(canvasBlob)
+    // The browser-created URL is state so the preview updates and is revoked below.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setImageSrc(objectUrl)
 
     return () => {

@@ -54,6 +54,8 @@ export const metadata: Metadata = {
 }
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+  // Keep the fixed Catalan locale statically rendered until next-intl's root-params API replaces this cache.
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   setRequestLocale(defaultLocale)
   const messages = await getMessages()
 

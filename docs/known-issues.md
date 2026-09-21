@@ -4,17 +4,31 @@ This document records non-blocking warnings and deferred technical work. It is
 updated when a check changes, a deployment decision is made, or an issue is
 resolved.
 
-Last observed: 2026-09-20
+Last observed: 2026-09-21
 
 ## Build and Tooling
 
 ### DEP-001: inherited dependency vulnerabilities
 
-- Observation: on 2026-09-16, Docker `npm audit --json` reported 31 vulnerable packages (4 low, 10 moderate, 16 high, 1 critical). After the controlled direct update on 2026-09-19, it reported 26 vulnerable packages (3 low, 9 moderate, 14 high, 0 critical). The focused lockfile update on 2026-09-20 reports 24 vulnerable packages (3 low, 7 moderate, 14 high, 0 critical), while `npm audit --omit=dev --json` reports no vulnerable production packages.
-- Scope: `next@16.3.5` and `next-intl@4.9.2` are direct production dependencies and no longer appear as audit findings. The focused update resolved the remaining production findings through `baseline-browser-mapping@2.11.25`, `mdast-util-to-hast@13.2.1`, `picomatch@2.3.2`, and `@parcel/watcher@2.6.0`. `@pandacss/dev@1.9.1` remains a direct development dependency with findings, while the remaining audit entries are transitive.
-- Impact: the critical finding, the direct framework findings, and the remaining production findings are resolved. The public deployment does not run the Next.js server or image optimization API, which limits the applicability of some remaining server- and build-specific advisories. The residual audit findings are development-only.
-- Decision: defer `npm audit fix` and especially `npm audit fix --force`. Investigate the remaining build-only dependency tree separately, with Panda CSS and its generated output explicitly excluded from this change.
-- Resolution: updated `next` to `16.3.5` and `next-intl` to the first stable fixed release, `4.9.2`, then regenerated the lockfile in Docker. The focused dependency-maintenance pass completed on 2026-09-20 without changing `package.json`, Panda CSS, ESLint, or application source.
+- Observation: on 2026-09-16, Docker `npm audit --json` reported 31 vulnerable packages (4 low, 10 moderate, 16 high, 1 critical). After the controlled direct update on 2026-09-19, it reported 26 vulnerable packages (3 low, 9 moderate, 14 high, 0 critical). The focused lockfile update on 2026-09-20 reported 24 vulnerable packages (3 low, 7 moderate, 14 high, 0 critical). The compatible dependency refresh on 2026-09-21 reports 11 vulnerable packages (1 low, 0 moderate, 10 high, 0 critical), while `npm audit --omit=dev --json` still reports no vulnerable production packages.
+- Scope: `next@16.3.5` and `next-intl@4.14.5` are direct production dependencies and no longer appear as audit findings. The compatible refresh also updated the current-major dependency tree, including `@pandacss/dev@1.12.1`, while the remaining audit entries are development-only Panda CSS and build-tool transitive packages.
+- Impact: the critical finding, the direct framework findings, and all known production-tree findings remain resolved. The public deployment does not run the Next.js server or image optimization API, which limits the applicability of the remaining server- and build-specific advisories. The residual audit findings affect the development/build environment rather than the static artifact runtime.
+- Decision: defer `npm audit fix` and especially `npm audit fix --force`. Review the remaining Panda CSS and ESLint tree as a separate major-tooling phase, with generated CSS and the editor validated after every group.
+- Resolution: completed the compatible dependency refresh in Docker without direct major upgrades. Lint, TypeScript, the 96-page static build, export, route smoke tests, and manual editor checks passed. The next maintenance step remains the separately tracked Panda CSS and ESLint review.
+
+### NEXT-002: next-intl root-params migration
+
+- Observation: `next-intl@4.14.5` marks `setRequestLocale` as deprecated in favor of `next/root-params`.
+- Impact: the current fixed Catalan locale still builds and exports correctly, but the existing API requires an explicit lint exception.
+- Decision: defer the migration until the root-params API can be evaluated without changing the rooted static locale or routing model.
+- Resolution: documented the deprecation and kept the current behavior in `0.4.3`.
+
+### EDITOR-001: local image resource lifetime
+
+- Observation: the shared `useImageLocal` utility creates browser object URLs for local images, while the application integration does not expose cleanup when a user replaces or resets an image.
+- Impact: repeatedly replacing large local images may retain browser memory until the page is closed.
+- Decision: defer cleanup work to editor maintenance; it is not a release blocker for the current workflow.
+- Resolution: tracked in the product roadmap for a focused editor-performance pass.
 
 ### NEXT-001: middleware convention deprecated
 

@@ -8,6 +8,18 @@ intencionada.
 
 Encara no hi ha canvis pendents de publicar.
 
+## [0.4.3] - 2026-09-21
+
+### Millorat
+
+- Actualitzades les dependències compatibles dins dels seus majors actuals,
+  mantenint l’exportació estàtica i l’editor.
+
+### Corregit
+
+- Ajustades les comprovacions de lint per a les API actuals de `next-intl` i la
+  previsualització d’object URLs, sense modificar el comportament de l’editor.
+
 ## [0.4.2] - 2026-09-20
 
 ### Corregit
